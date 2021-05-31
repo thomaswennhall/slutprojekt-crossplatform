@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { registerRootComponent } from "expo";
+import TaskList from "./screens/TaskList";
 import Category from "./screens/Category";
 const HomeScreen = ({ navigation }) => {
    return (
@@ -20,6 +21,7 @@ const App = () => {
          <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Category" component={Category} />
+            <Stack.Screen name="Task list" component={TaskList} />
          </Stack.Navigator>
       </NavigationContainer>
    );
