@@ -28,7 +28,7 @@ const Login = () => {
     }
   ]
 
-  const showIt = () => {
+  const pressHandler = () => {
     console.log(username, password)
   }
 
@@ -37,7 +37,7 @@ const Login = () => {
       {
         inputs.map(input => <Input key={input.label} {...input} />)
       }
-      <Button text="SIGN IN" pressHandler={showIt}/>
+      <Button text="SIGN IN" pressHandler={pressHandler}/>
     </View>
   )
 }
