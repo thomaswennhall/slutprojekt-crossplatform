@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   dashboardItem: {
-    height: 120,
+    minHeight: 130,
     display: "flex",
     padding: 10,
   },
@@ -18,23 +18,28 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF365A",
     borderRadius: 10,
   },
+  colorBlack: {
+    color: "#091832",
+  },
   dashboardItemHeader: {
     display: "flex",
     justifyContent: "space-evenly",
     flexDirection: "row",
     alignSelf: "flex-start",
+    paddingHorizontal: 15,
+    paddingVertical: 5,
   },
   dashboardItemText: {
     fontWeight: "bold",
     textAlign: "center",
     color: "#fff",
+    fontSize: 18,
   },
   dashboardItemHeaderCenter: {
-    alignSelf: "center",
-    flexGrow: 1,
+    marginLeft: 10,
   },
   dashboardItemCount: {
-    fontSize: 22,
+    fontSize: 30,
   },
   wrapCenter: {
     flexGrow: 1,

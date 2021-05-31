@@ -3,12 +3,14 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { registerRootComponent } from "expo";
 import Test from "@/test";
+import DashboardScreen from "./components/screens/dashboard/dashboard.screen";
 
 const App = () => {
   return (
     <View style={styles.container}>
       <Test />
       <StatusBar style="auto" />
+      <DashboardScreen />
     </View>
   );
 };

@@ -1,15 +1,23 @@
-import React, { useRef, useState } from "react";
-import { Text, View, Image, StyleSheet, FlatList, Button } from "react-native";
+import React, { useState } from "react";
+import { Text, View, Image, StyleSheet, FlatList } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
-import DashboardItem, { StylingOption } from "../../dashboard/dashboard-item";
+import DashboardItem, {
+  StylingOption,
+} from "@/components/dashboard/dashboard-item";
+import DashboardProfile from "@/components/dashboard/profile/profile.component";
+import Action from "@/components/button/button.component";
 
 const DashboardScreen = () => {
   const [user, setUser] = useState({
-    name: "Test-User",
+    username: "Test-User",
     role: "worker",
     image: "https://via.placeholder.com/150",
     tasks: [{}, {}, {}],
   });
+
+  const logoutHandler = () => {
+    console.log("logging out");
+  };
 
   const grid = [
     {
@@ -26,10 +34,14 @@ const DashboardScreen = () => {
       data: {
         button: {
           title: "View",
+          onPressHandler: () => {
+            console.log("Profile on press");
+          },
         },
       },
       stylingOption: {
         background: StylingOption.BACKGROUND_YELLOW,
+        color: StylingOption.COLOR_BLACK,
       },
     },
     {
@@ -41,6 +53,9 @@ const DashboardScreen = () => {
       data: {
         button: {
           title: "New",
+          onPressHandler: () => {
+            console.log("Messages on press");
+          },
         },
       },
     },
@@ -48,28 +63,23 @@ const DashboardScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.profile}>
-        <Image
-          style={styles.tinyLogo}
-          source={{
-            uri: "https://reactnative.dev/img/tiny_logo.png",
-          }}
-        />
-        <View style={styles.profileUser}>
-          <Text style={styles.profileHeader}>{user.name}</Text>
-          <Text style={styles.profileRole}>{user.role}</Text>
-        </View>
-      </View>
+      <DashboardProfile {...user} />
       <View>
-        <Text style={styles.overViewText}>OVERVIEW</Text>
+        <Text style={styles.overViewText}>Overview</Text>
         <FlatGrid
-          itemDimension={130}
+          itemDimension={120}
           data={grid}
+          spacing={15}
           renderItem={({ item }) => <DashboardItem {...item} />}
           style={styles.overViewGrid}
         />
       </View>
-      <Button title="Log out" />
+      <Action
+        text={"SIGN OUT"}
+        color={"lightRed"}
+        logoutButton={true}
+        pressHandler={logoutHandler}
+      />
     </View>
   );
 };
@@ -77,27 +87,9 @@ const DashboardScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#eee",
     justifyContent: "space-between",
-    padding: 20,
-  },
-  tinyLogo: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-  },
-  profile: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    maxWidth: 250,
-  },
-  profileRole: {
-    fontSize: 12,
-  },
-  profileHeader: {
-    fontSize: 16,
-    fontWeight: "bold",
+    paddingVertical: 40,
   },
   overViewHeader: {
     display: "flex",
@@ -109,10 +101,10 @@ const styles = StyleSheet.create({
   },
   overViewText: {
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 30,
     color: "#2B2B2B",
     marginBottom: 15,
-    marginLeft: 15,
+    marginLeft: 25,
   },
 });
 
