@@ -3,15 +3,13 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { registerRootComponent } from 'expo'
 import Test from '@/test'
-import LandingScreen from './components/screens/landing.screen'
 
 const App = () => {
   return (
-    <LandingScreen />
-    /*  <View style={styles.container}>
+    <View style={styles.container}>
       <Test />
       <StatusBar style="auto" />
-    </View> */
+    </View>
   )
 }
 
