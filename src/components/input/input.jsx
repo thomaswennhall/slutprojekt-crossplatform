@@ -2,13 +2,19 @@ import React from 'react'
 import { View, TextInput, Text, StyleSheet } from 'react-native'
 import { baseStyles } from '@/styles/global'
 
-const Input = ({ label, secureInput, placeholder }) => {
+const Input = ({ label, secureInput, placeholder, inputHandler }) => {
+
   return (
     <View>
       {
         label && <Text style={styles.header}>{label}</Text>
       }
-      <TextInput secureTextEntry={secureInput} style={styles.textBox} placeholder={placeholder} />
+      <TextInput 
+        secureTextEntry={secureInput} 
+        style={styles.textBox} 
+        placeholder={placeholder} 
+        onChangeText={inputHandler} 
+      />
     </View>
   )
 }

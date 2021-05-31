@@ -1,9 +1,9 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 
-const Action = ({ text, color }) => {
+const Action = ({ text, color, pressHandler }) => {
   return (
-    <TouchableOpacity style={[styles.button, color === 'red' ? styles.buttonRed : styles.buttonBlue ]}>
+    <TouchableOpacity onPress={pressHandler} style={[styles.button, color === 'red' ? styles.buttonRed : styles.buttonBlue ]}>
       <Text style={styles.text}>{text}</Text>
     </TouchableOpacity>
   )
