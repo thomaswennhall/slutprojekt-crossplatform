@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { View } from 'react-native'
 
-import Input from '../input/input'
-import Button from '../button/button'
+import Input from '../input/input.component'
+import Button from '../button/button.component'
 
 const Login = () => {
 
