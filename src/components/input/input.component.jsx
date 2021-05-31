@@ -28,7 +28,7 @@ const styles = StyleSheet.create(Object.assign({
     padding: 10,
     marginTop: 10,
     marginBottom: 10,
-    width: 319,
+    width: '100%',
     height: 50
   }
 }, baseStyles)

@@ -4,12 +4,15 @@ import { StyleSheet, View } from 'react-native'
 import { registerRootComponent } from 'expo'
 import Test from '@/test'
 
+import ProfileScreen from '@/components/screens/profile.screen'
+
 const App = () => {
   return (
-    <View style={styles.container}>
+    <ProfileScreen />
+    /* <View style={styles.container}>
       <Test />
       <StatusBar style="auto" />
-    </View>
+    </View> */
   )
 }
 
