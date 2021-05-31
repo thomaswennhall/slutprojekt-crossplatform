@@ -15,7 +15,7 @@ const ItemTitle = ({ title, date }) => (
 );
 
 const TaskList = () => {
-   const renderItem = ({ item }) => (
+   const renderItem = ({ item, index }) => (
       <View>
          <Text>
             <ItemTitle title={item.title} />
@@ -28,7 +28,11 @@ const TaskList = () => {
 
    return (
       <View>
-         <FlatList data={DATA} renderItem={renderItem} />
+         <FlatList
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={(item, index) => index.toString()}
+         />
       </View>
    );
 };
