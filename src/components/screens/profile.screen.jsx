@@ -1,11 +1,18 @@
 import React from 'react' 
 import {SafeAreaView, StyleSheet} from 'react-native' 
-import Profile from '@/components/profile/profile.component'
+import UpdateProfile from '@/components/updateProfile/update-profile.component'
+import DashboardProfile from '@/components/dashboard/profile/profile.component'
 
 const ProfileScreen = () => {
+  const user = {
+    username: 'thomas',
+    role: 'admin'
+  }
+
   return (
     <SafeAreaView style={styles.container}>
-      <Profile />
+      <DashboardProfile {...user} />
+      <UpdateProfile />
     </SafeAreaView>
   )
 }
@@ -16,7 +23,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column', 
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
     height: '100%'
   }
 })

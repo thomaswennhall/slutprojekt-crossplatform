@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import Input from '@/components/input/input.component'
 import Button from '@/components/button/button.component'
 
-const Profile = () => {
+const UpdateProfile = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -35,15 +35,16 @@ const Profile = () => {
       <View >
         {inputs.map(input => <Input key={input.label} {...input} />)}
       </View>
-      <Button text='SAVE CHANGES' pressHandler={saveChanges} />
+      <Button text='SAVE CHANGES' color='blue' saveButton={true} pressHandler={saveChanges} />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 80,
     width: '80%'
   }
 })
 
-export default Profile
+export default UpdateProfile
