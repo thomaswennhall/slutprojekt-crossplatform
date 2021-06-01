@@ -13,6 +13,7 @@ const Action = ({
       onPress={pressHandler}
       style={[
         styles[color],
+        styles.button,
         dashboardButton ? styles.dashboardButton : "",
         logoutButton ? styles.logoutButton : "",
       ]}
