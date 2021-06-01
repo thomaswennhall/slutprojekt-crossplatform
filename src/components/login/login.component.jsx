@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import * as API from "../../api/index";
 import { View } from "react-native";
-
+import { AuthContext } from "../../store/authContext";
 import Input from "../input/input.component";
 import Button from "../button/button.component";
 
-const Login = () => {
+const Login = ({ toDashboard }) => {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
 
@@ -25,9 +26,10 @@ const Login = () => {
          },
       },
    ];
-
-   const pressHandler = () => {
-      console.log(username, password);
+   const { singIn } = useContext(AuthContext);
+   const pressHandler = async () => {
+      await singIn(username, password);
+      toDashboard();
    };
 
    return (
