@@ -34,4 +34,4 @@ const styles = StyleSheet.create(Object.assign({
 }, baseStyles)
 )
 
-module.exports = Input
+export default Input
