@@ -5,7 +5,7 @@ import DashboardItem, { StylingOption } from "@/components/dashboard/dashboard-i
 import DashboardProfile from "@/components/dashboard/profile/profile.component";
 import Action from "@/components/button/button.component";
 
-const DashboardScreen = () => {
+const DashboardScreen = ({ navigation }) => {
    const [user, setUser] = useState({
       username: "Test-User",
       role: "worker",
@@ -19,7 +19,14 @@ const DashboardScreen = () => {
 
    const grid = [
       {
-         data: user.tasks.length,
+         data: {
+            button: {
+               title: user.tasks.length,
+               onPressHandler: () => {
+                  navigation.navigate("Category");
+               },
+            },
+         },
          title: "Tasks",
          icon: "i",
          stylingOption: {
