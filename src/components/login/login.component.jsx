@@ -40,4 +40,4 @@ const Login = () => {
    );
 };
 
-module.exports = Login;
+export default Login;
