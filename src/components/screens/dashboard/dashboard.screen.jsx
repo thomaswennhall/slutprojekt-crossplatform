@@ -4,7 +4,7 @@ import { FlatGrid } from "react-native-super-grid";
 import DashboardItem, { StylingOption } from "@/components/dashboard/dashboard-item";
 import DashboardProfile from "@/components/dashboard/profile/profile.component";
 import Action from "@/components/button/button.component";
-
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 const DashboardScreen = ({ navigation }) => {
    const [user, setUser] = useState({
       username: "Test-User",
@@ -28,14 +28,14 @@ const DashboardScreen = ({ navigation }) => {
             },
          },
          title: "Tasks",
-         icon: "i",
+         icon: <Icon name="file-document-outline" style={styles.icon} />,
          stylingOption: {
             background: StylingOption.BACKGROUND_BLUE,
          },
       },
       {
          title: "Profile",
-         icon: "i",
+         icon: <Icon name="account-circle" style={styles.icon} />,
          data: {
             button: {
                title: "View",
@@ -51,7 +51,7 @@ const DashboardScreen = ({ navigation }) => {
       },
       {
          title: "Messages",
-         icon: "i",
+         icon: <Icon name="email" style={styles.icon} />,
          stylingOption: {
             background: StylingOption.BACKGROUND_RED,
          },
@@ -59,7 +59,7 @@ const DashboardScreen = ({ navigation }) => {
             button: {
                title: "New",
                onPressHandler: () => {
-                  console.log("Messages on press");
+                  navigation.navigate("Task list");
                },
             },
          },
@@ -109,6 +109,9 @@ const styles = StyleSheet.create({
       color: "#2B2B2B",
       marginBottom: 15,
       marginLeft: 25,
+   },
+   icon: {
+      fontSize: 24,
    },
 });
 
