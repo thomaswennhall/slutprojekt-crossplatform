@@ -1,21 +1,21 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
-// import Arrow from "../../assets/icons/Iconly/Bold/arrow-right.svg";
-// import Plus from "../../assets/icons/Iconly/Bold/plus.svg";
+import Icon from "react-native-vector-icons/MaterialIcons";
 const CategoryListScreen = ({ notCompletedHandler }) => {
+   // const arrowRight = <Icon name="arrow-right" size={30} />;
    return (
       <View style={style.container}>
          <TouchableOpacity onPress={notCompletedHandler} style={style.list}>
             <Text style={style.categoryTitle}>Not Completed</Text>
-            {/* <Arrow style={style.icon} /> */}
+            <Icon name="arrow-right" style={style.icon} />
          </TouchableOpacity>
          <TouchableOpacity onPress={notCompletedHandler} style={style.list}>
             <Text style={style.categoryTitle}>Completed</Text>
-            {/* <Arrow style={style.icon} /> */}
+            <Icon name="arrow-right" style={style.icon} />
          </TouchableOpacity>
          <TouchableOpacity onPress={notCompletedHandler} style={style.list}>
             <Text style={style.categoryTitle}>New task</Text>
-            {/* <Plus style={style.icon} /> */}
+            <Icon name="arrow-right" style={style.icon} />
          </TouchableOpacity>
       </View>
    );
@@ -33,10 +33,12 @@ const style = StyleSheet.create({
       marginBottom: 16,
    },
    icon: {
+      fontSize: 30,
       alignSelf: "center",
    },
    categoryTitle: {
       fontWeight: "bold",
+      display: "flex",
    },
 });
 export default CategoryListScreen;
