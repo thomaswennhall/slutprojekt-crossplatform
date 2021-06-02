@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Test from "@/test";
 import LandingScreen from "../components/screens/landing/landing.screen";
 import DashboardScreen from "../components/screens/dashboard/dashboard.screen";
+import TaskMessages from "../components/screens/task-messages/task-messages.screen";
 
 export const ScreenName = {
   LANDING: "Landing",
@@ -16,7 +17,7 @@ const Stack = createStackNavigator();
 const Navigation = () => (
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name={ScreenName.LANDING} component={LandingScreen} />
+      <Stack.Screen name={ScreenName.LANDING} component={TaskMessages} />
       <Stack.Screen name={ScreenName.DASHBOARD} component={DashboardScreen} />
       {/* Screens Goes here */}
     </Stack.Navigator>
