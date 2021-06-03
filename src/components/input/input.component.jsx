@@ -35,9 +35,6 @@ const styles = StyleSheet.create(
    )
 );
 
-<<<<<<< HEAD
-module.exports = Input;
-=======
 const styles = StyleSheet.create(Object.assign({
  
   textBox: {
@@ -54,4 +51,3 @@ const styles = StyleSheet.create(Object.assign({
 )
 
 export default Input
->>>>>>> style-test
