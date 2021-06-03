@@ -1,5 +1,5 @@
 import React, { useState } from 'react' 
-import { View, StyleSheet } from 'react-native' 
+import { View, Text, StyleSheet } from 'react-native' 
 import Input from '@/components/input/input.component'
 import Button from '@/components/button/button.component'
 
@@ -32,6 +32,7 @@ const UpdateProfile = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Profile</Text>
       <View >
         {inputs.map(input => <Input key={input.label} {...input} />)}
       </View>
@@ -42,8 +43,13 @@ const UpdateProfile = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 80,
+    marginTop: 20,
     width: '80%'
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20
   }
 })
 
