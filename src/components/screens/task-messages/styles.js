@@ -30,7 +30,13 @@ const styles = StyleSheet.create({
   messageAuthor: {
     // color: "#7A7A7A",
     fontWeight: "bold",
-    color: "#eee",
+    color: "#222",
+    borderRadius: 60,
+    backgroundColor: "#3B3AC9",
+    maxWidth: 20,
+    maxHeight: 20,
+    padding: 20,
+    marginRight: 20,
   },
   messageContent: {
     marginVertical: 10,
@@ -42,7 +48,8 @@ const styles = StyleSheet.create({
     padding: 20,
     display: "flex",
     // backgroundColor: "#FDF0E9",
-    backgroundColor: "#3B3AC9",
+    // backgroundColor: "#3B3AC9",
+    backgroundColor: "#eee",
     justifyContent: "space-evenly",
     borderRadius: 6,
   },
@@ -64,6 +71,7 @@ const styles = StyleSheet.create({
   },
   messageOwner: {
     backgroundColor: "#FFCA36",
+    backgroundColor: "#fff",
   },
 });
 
