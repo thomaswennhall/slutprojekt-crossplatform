@@ -1,8 +1,14 @@
 import React from 'react'
 import { registerRootComponent } from 'expo'
-import Navigation from './navigation/navigation'
+import Test from '@/test'
+import Theme from '@/styles/theme'
+
 const App = () => {
-  return <Navigation />
+  return (
+    <Theme>
+      <Test color="blue" alignSelf="flex-end" />
+    </Theme>
+  )
 }
 
 export default registerRootComponent(App)
