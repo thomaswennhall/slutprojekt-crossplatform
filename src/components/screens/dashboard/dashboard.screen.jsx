@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
 import DashboardItem, { StylingOption } from "@/components/dashboard/dashboard-item";
 import DashboardProfile from "@/components/dashboard/profile/profile.component";
-import Action from "@/components/button/button.component";
+import Button from "@/components/base/button.component";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 const DashboardScreen = ({ navigation }) => {
    const [user, setUser] = useState({
@@ -79,7 +79,7 @@ const DashboardScreen = ({ navigation }) => {
                style={styles.overViewGrid}
             />
          </View>
-         <Action
+         <Button
             text={"SIGN OUT"}
             color={"lightRed"}
             logoutButton={true}

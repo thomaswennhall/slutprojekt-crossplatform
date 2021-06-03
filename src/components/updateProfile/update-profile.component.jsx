@@ -1,7 +1,7 @@
 import React, { useState } from 'react' 
 import { View, Text, StyleSheet } from 'react-native' 
 import Input from '@/components/input/input.component'
-import Button from '@/components/button/button.component'
+import Button from '@/components/base/button.component'
 
 const UpdateProfile = () => {
   const [username, setUsername] = useState('')
@@ -36,7 +36,7 @@ const UpdateProfile = () => {
       <View >
         {inputs.map(input => <Input key={input.label} {...input} />)}
       </View>
-      <Button text='SAVE CHANGES' color='blue' saveButton={true} pressHandler={saveChanges} />
+      <Button text='SAVE CHANGES' color='blue' width='100%' pressHandler={saveChanges} />
     </View>
   )
 }

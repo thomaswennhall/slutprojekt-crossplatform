@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { View } from "react-native";
 import { AuthContext } from "../../store/authContext";
 import Input from "../input/input.component";
-import Button from "../button/button.component";
+import Button from "../base/button.component";
 
 const Login = ({ toDashboard }) => {
    const [username, setUsername] = useState("");
@@ -36,7 +36,12 @@ const Login = ({ toDashboard }) => {
          {inputs.map((input) => (
             <Input key={input.label} {...input} />
          ))}
-         <Button text="SIGN IN" pressHandler={pressHandler} color="blue" />
+         <Button 
+            text="SIGN IN" 
+            pressHandler={pressHandler} 
+            color="blue"
+            alignSelf="flex-end"
+         />
       </View>
    );
 };

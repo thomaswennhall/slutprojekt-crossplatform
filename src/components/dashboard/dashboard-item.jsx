@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import Button from "@/components/button/button.component";
+import Button from "@/components/base/button.component";
 import styles from "./styles";
 
 export const StylingOption = {
