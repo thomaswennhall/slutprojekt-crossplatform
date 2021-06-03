@@ -7,15 +7,18 @@ const Action = ({
   pressHandler,
   dashboardButton,
   logoutButton,
+  saveButton
 }) => {
   return (
     <TouchableOpacity
       onPress={pressHandler}
       style={[
+        styles.button,
         styles[color],
         styles.button,
         dashboardButton ? styles.dashboardButton : "",
         logoutButton ? styles.logoutButton : "",
+        saveButton ? styles.saveButton : "",
       ]}
     >
       <Text style={styles.text}>{text}</Text>
@@ -64,6 +67,10 @@ const styles = StyleSheet.create({
     padding: 20,
     minWidth: "50%",
   },
+  saveButton: {
+    alignSelf: "center",
+    width: "100%",
+  }
 });
 
 export default Action;
