@@ -41,4 +41,4 @@ const Login = ({ toDashboard }) => {
    );
 };
 
-module.exports = Login;
+export default Login;

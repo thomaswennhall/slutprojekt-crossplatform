@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { registerRootComponent } from "expo";
 import Navigation from "./navigation/navigation";
@@ -9,5 +10,19 @@ const App = () => {
       </AuthContextProvider>
    );
 };
+=======
+import React from 'react'
+import { registerRootComponent } from 'expo'
+import Test from '@/test'
+import Theme from '@/styles/theme'
 
-export default registerRootComponent(App);
+const App = () => {
+  return (
+    <Theme>
+      <Test color="blue" alignSelf="flex-end" />
+    </Theme>
+  )
+}
+>>>>>>> style-test
+
+export default registerRootComponent(App)

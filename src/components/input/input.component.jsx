@@ -35,4 +35,23 @@ const styles = StyleSheet.create(
    )
 );
 
+<<<<<<< HEAD
 module.exports = Input;
+=======
+const styles = StyleSheet.create(Object.assign({
+ 
+  textBox: {
+    color: 'black',
+    backgroundColor: '#eee',
+    borderRadius: 5,
+    padding: 10,
+    marginTop: 10,
+    marginBottom: 10,
+    width: '100%',
+    height: 50
+  }
+}, baseStyles)
+)
+
+export default Input
+>>>>>>> style-test
