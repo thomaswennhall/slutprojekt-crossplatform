@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { SafeAreaView, View, Text, FlatList } from "react-native";
+import { Swipeable } from "react-native-gesture-handler";
 import styles from "./styles";
 const TaskMessages = () => {
   const [user] = useState({
@@ -31,10 +32,94 @@ const TaskMessages = () => {
       date: new Date(),
     },
   ]);
-  const owner = (author) => {
-    return user.username === author
-      ? [styles.messageOwner, styles.colorOwner]
-      : "";
+  const rightSwipeActions = (author) => {
+    return author === user.username ? (
+      <View style={{ backgroundColor: "#eee", display: "flex", minWidth: 100 }}>
+        <View
+          style={{
+            backgroundColor: "#eee",
+            flexGrow: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 20,
+            borderLeftColor: "#EB6464",
+            borderLeftWidth: 10,
+          }}
+        >
+          <Text>Delete</Text>
+        </View>
+        <View
+          style={{
+            backgroundColor: "#eee",
+            flexGrow: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 20,
+            borderBottomColor: "#eee",
+            borderBottomWidth: 2,
+            borderLeftColor: "#7997FF",
+            borderLeftWidth: 10,
+          }}
+        >
+          <Text>Edit</Text>
+        </View>
+      </View>
+    ) : (
+      <View
+        style={{
+          backgroundColor: "#eee",
+          display: "flex",
+          minWidth: 100,
+          marginLeft: 10,
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: "#eee",
+            flexGrow: 1,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: 20,
+            borderLeftColor: "#3B3AC9",
+            borderLeftWidth: 10,
+          }}
+        >
+          <Text>Reply</Text>
+        </View>
+      </View>
+    );
+  };
+  const LeftSwipeActions = () => {
+    return (
+      <View
+        style={{
+          backgroundColor: "#eee",
+          justifyContent: "center",
+          alignItems: "flex-end",
+        }}
+      >
+        <Text
+          style={{
+            color: "#222",
+            paddingHorizontal: 10,
+            fontWeight: "600",
+            paddingHorizontal: 30,
+            paddingVertical: 20,
+          }}
+        >
+          Delete
+        </Text>
+      </View>
+    );
+  };
+  const swipeFromLeftOpen = () => {
+    alert("Swipe from left");
+  };
+  const swipeFromRightOpen = () => {
+    alert("Swipe from right");
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -42,21 +127,28 @@ const TaskMessages = () => {
         style={styles.messageWrapper}
         data={messages}
         renderItem={({ item }) => (
-          <View
-            style={[
-              styles.messageContainer,
-              user.username === item.author ? styles.messageOwner : "",
-            ]}
-            key={item._id}
+          <Swipeable
+            renderLeftActions={LeftSwipeActions}
+            renderRightActions={() => rightSwipeActions(item.author)}
+            onSwipeableRightOpen={swipeFromRightOpen}
+            onSwipeableLeftOpen={swipeFromLeftOpen}
           >
-            <Text style={styles.messageTitle}>{item.title}</Text>
-            <Text style={styles.messageContent}>
-              {item.content.substring(0, 150)}
-            </Text>
-            <Text style={[styles.alignRight, styles.messageDate]}>
-              {item.date.toString().split(" GMT")[0]}
-            </Text>
-          </View>
+            <View
+              style={[
+                styles.messageContainer,
+                user.username === item.author ? styles.messageOwner : "",
+              ]}
+              key={item._id}
+            >
+              <Text style={styles.messageTitle}>{item.title}</Text>
+              <Text style={styles.messageContent}>
+                {item.content.substring(0, 150)}
+              </Text>
+              <Text style={[styles.alignRight, styles.messageDate]}>
+                {item.date.toString().split(" GMT")[0]}
+              </Text>
+            </View>
+          </Swipeable>
         )}
       />
     </SafeAreaView>
