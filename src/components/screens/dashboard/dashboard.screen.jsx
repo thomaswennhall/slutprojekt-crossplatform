@@ -40,7 +40,7 @@ const DashboardScreen = ({ navigation }) => {
             button: {
                title: "View",
                onPressHandler: () => {
-                  console.log("Profile on press");
+                  navigation.navigate("Profile");
                },
             },
          },
