@@ -16,7 +16,6 @@ const Input = ({ label, secureInput, placeholder, inputHandler }) => {
       </View>
    );
 };
-
 const styles = StyleSheet.create(
    Object.assign(
       {
@@ -27,7 +26,7 @@ const styles = StyleSheet.create(
             padding: 10,
             marginTop: 10,
             marginBottom: 10,
-            width: 319,
+            width: "100%",
             height: 50,
          },
       },
@@ -35,19 +34,4 @@ const styles = StyleSheet.create(
    )
 );
 
-const styles = StyleSheet.create(Object.assign({
- 
-  textBox: {
-    color: 'black',
-    backgroundColor: '#eee',
-    borderRadius: 5,
-    padding: 10,
-    marginTop: 10,
-    marginBottom: 10,
-    width: '100%',
-    height: 50
-  }
-}, baseStyles)
-)
-
-export default Input
+export default Input;

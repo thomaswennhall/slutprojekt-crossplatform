@@ -2,18 +2,17 @@ import React from "react";
 import { registerRootComponent } from "expo";
 import Navigation from "./navigation/navigation";
 import { AuthContextProvider } from "./store/authContext";
-import Test from '@/test'
-import Theme from '@/styles/theme'
+import Test from "@/test";
+import Theme from "@/styles/theme";
 const App = () => {
    return (
       <AuthContextProvider>
          <Navigation />
-    <Theme>
+         {/* <Theme>
       <Test color="blue" alignSelf="flex-end" />
-    </Theme>
+    </Theme> */}
       </AuthContextProvider>
    );
 };
 
-
-export default registerRootComponent(App)
+export default registerRootComponent(App);

@@ -32,7 +32,7 @@ const Login = ({ toDashboard }) => {
    };
 
    return (
-      <View>
+      <View style={{ width: "100%", padding: 28 }}>
          {inputs.map((input) => (
             <Input key={input.label} {...input} />
          ))}
