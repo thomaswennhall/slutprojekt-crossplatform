@@ -1,33 +1,27 @@
-import React from "react";
-import { View, TextInput, Text, StyleSheet } from "react-native";
+import React, {useContext} from "react";
+import { View, StyleSheet } from "react-native";
+import {ThemeContext} from 'styled-components/native'
 import {Label} from '@/styles/text/label.styling'
+import {TextInput} from '@/styles/input/textInput.styling'
 
-const Input = ({ label, secureInput, placeholder, inputHandler }) => {
-  
+const Input = ({ label, secureInput, placeholder, inputHandler, color }) => {
+  const themeContext = useContext(ThemeContext)
+
+  const theme = {
+    backgroundColor: themeContext.colors[color]
+  }
   return (
       <View>
          {label && <Label>{label}</Label>}
          <TextInput
             secureTextEntry={secureInput}
-            style={styles.textBox}
             placeholder={placeholder}
             onChangeText={inputHandler}
             autoCapitalize="none"
+            theme={theme}
          />
       </View>
    );
 };
-const styles = StyleSheet.create({
-  textBox: {
-    color: "black",
-    backgroundColor: "#eee",
-    borderRadius: 5,
-    padding: 10,
-    marginTop: 10,
-    marginBottom: 10,
-    width: "100%",
-    height: 50,
-  }
-});
 
 export default Input

@@ -34,7 +34,7 @@ const Login = ({ toDashboard }) => {
    return (
       <View style={{ width: "100%", padding: 28 }}>
          {inputs.map((input) => (
-            <Input key={input.label} {...input} />
+            <Input color='lightGray' key={input.label} {...input} />
          ))}
          <Button 
             text="SIGN IN" 

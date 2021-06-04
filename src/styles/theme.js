@@ -4,11 +4,13 @@ import { ThemeProvider } from 'styled-components/native'
 export const theme = {
   colors: {
     blue: '#0f55df',
+    lightBlue: '#EDF2FC',
     red: '#eb5757',
     lightRed: '#fb7851',
     black: '#091832',
     yellow: '#F8CC44',
-    gray: '#7B7B7B'
+    gray: '#7B7B7B',
+    lightGray: '#F6F6F6'
   },
   spacing: {
     sm: '8px',
