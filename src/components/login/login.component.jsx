@@ -3,11 +3,11 @@ import { View } from "react-native";
 import { AuthContext } from "../../store/authContext";
 import Input from "../input/input.component";
 import Button from "../button/button.component";
-
+import Modal from "../pop-up/successModalComponent";
 const Login = ({ toDashboard }) => {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
-
+   const [modalVisible, setModal] = useState(false);
    const inputs = [
       {
          label: "Username",
@@ -30,13 +30,17 @@ const Login = ({ toDashboard }) => {
       await singIn(username, password);
       toDashboard();
    };
-
+   const toggleModalPop = () => {
+      setModal(!modalVisible);
+   };
    return (
       <View style={{ width: "100%", padding: 28 }}>
          {inputs.map((input) => (
             <Input key={input.label} {...input} />
          ))}
          <Button text="SIGN IN" pressHandler={pressHandler} color="blue" />
+         <Button text="ERROR" pressHandler={toggleModalPop} color="blue" />
+         <Modal modalVisible={modalVisible} toggleModalPop={toggleModalPop} />
       </View>
    );
 };
