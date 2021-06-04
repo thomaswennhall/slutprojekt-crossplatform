@@ -1,10 +1,12 @@
 import React from "react";
 import { View, TextInput, Text, StyleSheet } from "react-native";
+import {Label} from '@/styles/text/label.styling'
 
 const Input = ({ label, secureInput, placeholder, inputHandler }) => {
-   return (
+  
+  return (
       <View>
-         {label && <Text style={styles.header}>{label}</Text>}
+         {label && <Label>{label}</Label>}
          <TextInput
             secureTextEntry={secureInput}
             style={styles.textBox}

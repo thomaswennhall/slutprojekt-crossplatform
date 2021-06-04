@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, StyleSheet } from 'react-native' 
 import Input from '@/components/input/input.component'
 import Button from '@/components/base/button.component'
-import {SectionHeader} from '@/styles/header/header.styling'
+import {SectionHeader} from '@/styles/text/header.styling'
 
 const UpdateProfile = () => {
   const [username, setUsername] = useState('')

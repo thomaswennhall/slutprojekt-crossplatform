@@ -7,7 +7,8 @@ export const theme = {
     red: '#eb5757',
     lightRed: '#fb7851',
     black: '#091832',
-    yellow: '#F8CC44'
+    yellow: '#F8CC44',
+    gray: '#7B7B7B'
   },
   spacing: {
     sm: '8px',

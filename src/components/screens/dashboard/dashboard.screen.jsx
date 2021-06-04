@@ -4,7 +4,7 @@ import { FlatGrid } from "react-native-super-grid";
 import DashboardItem, { StylingOption } from "@/components/dashboard/dashboard-item";
 import DashboardProfile from "@/components/dashboard/profile/profile.component";
 import Button from "@/components/base/button.component";
-import {SectionHeader} from '@/styles/header/header.styling'
+import {SectionHeader} from '@/styles/text/header.styling'
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 const DashboardScreen = ({ navigation }) => {
    const [user, setUser] = useState({
