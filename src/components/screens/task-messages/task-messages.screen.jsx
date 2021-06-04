@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 import styles from "./styles";
+import MessagesList from "@/components/messages/messages-list.component";
 const TaskMessages = () => {
   const [user] = useState({
     username: "test-user",
@@ -143,80 +144,81 @@ const TaskMessages = () => {
   };
   const [showMessage, setShowMessage] = useState(false);
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        style={styles.messageWrapper}
-        data={messages}
-        renderItem={({ item }) => (
-          <Swipeable
-            renderLeftActions={LeftSwipeActions}
-            renderRightActions={() => rightSwipeActions(item.author)}
-            onSwipeableRightOpen={swipeFromRightOpen}
-            onSwipeableLeftOpen={swipeFromLeftOpen}
-          >
-            <TouchableOpacity
-              onPress={() =>
-                setMessages([
-                  ...messages.map((message) =>
-                    message._id === item._id
-                      ? { ...message, showMessage: true }
-                      : message
-                  ),
-                ])
-              }
-            >
-              <View
-                style={[
-                  styles.messageContainer,
-                  user.username === item.author ? styles.messageOwner : "",
-                ]}
-                key={item._id}
-              >
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text style={styles.messageTitle}>{item.title}</Text>
-                  <View
-                    style={{
-                      borderRadius: 50,
-                      minHeight: 30,
-                      minWidth: 30,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backgroundColor: "blue",
-                    }}
-                  >
-                    <Text
-                      style={[
-                        styles.alignRight,
-                        { color: "red", marginRight: 10 },
-                      ]}
-                    >
-                      {item.author.substring(0, 1).toUpperCase()}
-                    </Text>
-                  </View>
-                </View>
-                {item.showMessage && (
-                  <Text style={styles.messageContent}>
-                    {item.content.substring(0, 150)}
-                  </Text>
-                )}
+    <MessagesList data={messages} />
+    // <SafeAreaView style={styles.container}>
+    //   <FlatList
+    //     style={styles.messageWrapper}
+    //     data={messages}
+    //     renderItem={({ item }) => (
+    //       <Swipeable
+    //         renderLeftActions={LeftSwipeActions}
+    //         renderRightActions={() => rightSwipeActions(item.author)}
+    //         onSwipeableRightOpen={swipeFromRightOpen}
+    //         onSwipeableLeftOpen={swipeFromLeftOpen}
+    //       >
+    //         <TouchableOpacity
+    //           onPress={() =>
+    //             setMessages([
+    //               ...messages.map((message) =>
+    //                 message._id === item._id
+    //                   ? { ...message, showMessage: true }
+    //                   : message
+    //               ),
+    //             ])
+    //           }
+    //         >
+    //           <View
+    //             style={[
+    //               styles.messageContainer,
+    //               user.username === item.author ? styles.messageOwner : "",
+    //             ]}
+    //             key={item._id}
+    //           >
+    //             <View
+    //               style={{
+    //                 display: "flex",
+    //                 flexDirection: "row",
+    //                 justifyContent: "space-between",
+    //                 alignItems: "center",
+    //               }}
+    //             >
+    //               <Text style={styles.messageTitle}>{item.title}</Text>
+    //               <View
+    //                 style={{
+    //                   borderRadius: 50,
+    //                   minHeight: 30,
+    //                   minWidth: 30,
+    //                   display: "flex",
+    //                   alignItems: "center",
+    //                   justifyContent: "center",
+    //                   backgroundColor: "blue",
+    //                 }}
+    //               >
+    //                 <Text
+    //                   style={[
+    //                     styles.alignRight,
+    //                     { color: "red", marginRight: 10 },
+    //                   ]}
+    //                 >
+    //                   {item.author.substring(0, 1).toUpperCase()}
+    //                 </Text>
+    //               </View>
+    //             </View>
+    //             {item.showMessage && (
+    //               <Text style={styles.messageContent}>
+    //                 {item.content.substring(0, 150)}
+    //               </Text>
+    //             )}
 
-                <Text style={[styles.alignRight, styles.messageDate]}>
-                  {item.date.toString().split(" GMT")[0]}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </Swipeable>
-        )}
-      />
-    </SafeAreaView>
+    //             <Text style={[styles.alignRight, styles.messageDate]}>
+    //               {item.date.toString().split(" GMT")[0]}
+    //             </Text>
+    //           </View>
+    //         </TouchableOpacity>
+    //       </Swipeable>
+    //     )}
+    //   />
+    // </SafeAreaView>
   );
 };
 
