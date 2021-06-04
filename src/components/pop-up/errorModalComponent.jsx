@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View, Image } from "react-native";
 
-const popUp = () => {
-   const [modalVisible, setModalVisible] = useState(true);
+const popUp = ({ modalVisible, toggleModalPop, str }) => {
+   //    const [modalVisible, setModalVisible] = useState(true);
    return (
       <View style={styles.centeredView}>
          <Modal
@@ -11,7 +11,7 @@ const popUp = () => {
             visible={modalVisible}
             onRequestClose={() => {
                Alert.alert("Modal has been closed.");
-               setModalVisible(!modalVisible);
+               toggleModalPop(!modalVisible);
             }}
          >
             <View style={styles.centeredView}>
@@ -27,7 +27,7 @@ const popUp = () => {
                   </Text>
                   <Pressable
                      style={[styles.button, styles.buttonClose]}
-                     onPress={() => setModalVisible(!modalVisible)}
+                     onPress={() => toggleModalPop(!modalVisible)}
                   >
                      <Text style={styles.textStyle}>Try again</Text>
                   </Pressable>
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
       padding: 0,
    },
    button: {
+      maxWidth: 80,
       marginTop: 20,
       alignSelf: "center",
       borderRadius: 8,
