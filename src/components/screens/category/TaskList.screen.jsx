@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
-import Tasks from "../../Task/tasks";
+import Tasks from "../../Task/taskList";
 const TaskListScreen = ({ navigation }) => {
    const theTask = () => {
       navigation.navigate("TASK");
