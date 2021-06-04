@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native' 
 import Input from '@/components/input/input.component'
 import Button from '@/components/base/button.component'
+import {SectionHeader} from '@/styles/header/header.styling'
 
 const UpdateProfile = () => {
   const [username, setUsername] = useState('')
@@ -32,7 +33,7 @@ const UpdateProfile = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Profile</Text>
+      <SectionHeader >Profile</SectionHeader>
       <View >
         {inputs.map(input => <Input key={input.label} {...input} />)}
       </View>
