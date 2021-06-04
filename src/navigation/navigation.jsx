@@ -5,6 +5,7 @@ import Test from "../components/screens/landing.screen";
 import Dashboard from "../components/screens/dashboard/dashboard.screen";
 import TaskCategory from "../components/screens/category/Category.screen";
 import TaskList from "../components/screens/category/TaskList.screen";
+import Task from "../components/screens/task/task.screen";
 export const ScreenName = {
    LANDING: "Landing",
    DASHBOARD: "Dashboard",
@@ -12,6 +13,7 @@ export const ScreenName = {
    TEST: "Test",
    CATEGORY: "Category",
    TASKLIST: "Task list",
+   TASK: "TASK",
 };
 
 const Stack = createStackNavigator();
@@ -22,6 +24,7 @@ const Navigation = () => (
          <Stack.Screen name={ScreenName.DASHBOARD} component={Dashboard} />
          <Stack.Screen name={ScreenName.CATEGORY} component={TaskCategory} />
          <Stack.Screen name={ScreenName.TASKLIST} component={TaskList} />
+         <Stack.Screen name={ScreenName.TASK} component={Task} />
          {/* Screens Goes here */}
       </Stack.Navigator>
    </NavigationContainer>
