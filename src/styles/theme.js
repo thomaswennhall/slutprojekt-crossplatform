@@ -18,7 +18,7 @@ export const theme = {
   },
   fonts: {
     heading: "Tahoma",
-    text: "Arial",
+    text: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   },
 };
 

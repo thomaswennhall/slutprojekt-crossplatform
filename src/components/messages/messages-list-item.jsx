@@ -5,9 +5,12 @@ import {
   Portrait,
   CardContent,
   CardFooter,
+  TouchableAreaOpacity,
 } from "@/styles";
 import { MessageAuthor, MessageTitle } from "@/styles/messages";
 import { ThemeContext } from "styled-components";
+import SwipeableGesture from "../gestures/swipeable";
+import MessageActionPanel from "./message-action-panel";
 
 const MessagesListItem = ({ author, title, content }) => {
   const authorFirstChar = (author) => {
@@ -17,6 +20,11 @@ const MessagesListItem = ({ author, title, content }) => {
   const [user, setUser] = useState({
     username: "test-user",
   });
+  const [toggleContent, setToggleContent] = useState(false);
+
+  const showHideContent = () => {
+    setToggleContent(!toggleContent);
+  };
 
   const themeContext = useContext(ThemeContext);
 
@@ -27,24 +35,30 @@ const MessagesListItem = ({ author, title, content }) => {
 
   return (
     <CardWrapper>
-      <CardHeader
-        theme={{
-          background: themeContext.colors.primary,
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <MessageTitle theme={{ fontSize: "16px" }}>{title}</MessageTitle>
-        <Portrait theme={{ background: portraitColor(author) }}>
-          <MessageAuthor theme={{ fontSize: "18px" }}>
-            {authorFirstChar(author)}
-          </MessageAuthor>
-        </Portrait>
-      </CardHeader>
-      <CardContent>
-        <MessageAuthor>{content}</MessageAuthor>
-      </CardContent>
-      <CardFooter></CardFooter>
+      <SwipeableGesture rightActionHandler={() => <MessageActionPanel />}>
+        <CardHeader
+          theme={{
+            background: themeContext.colors.primary,
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <MessageTitle theme={{ fontSize: "16px" }}>{title}</MessageTitle>
+          <Portrait theme={{ background: portraitColor(author) }}>
+            <MessageAuthor theme={{ fontSize: "18px" }}>
+              {authorFirstChar(author)}
+            </MessageAuthor>
+          </Portrait>
+        </CardHeader>
+        <TouchableAreaOpacity onPress={showHideContent}>
+          {toggleContent && (
+            <CardContent>
+              <MessageAuthor>{content}</MessageAuthor>
+            </CardContent>
+          )}
+        </TouchableAreaOpacity>
+        <CardFooter></CardFooter>
+      </SwipeableGesture>
     </CardWrapper>
   );
 };

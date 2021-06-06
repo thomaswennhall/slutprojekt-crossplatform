@@ -16,7 +16,11 @@ export const CardHeader = styled(CardWrapper)`
     theme.justifyContent ? theme.justifyContent : "space-around"};
 `;
 
-export const CardContent = styled(CardHeader)``;
+export const CardContent = styled(CardHeader)`
+  flex-direction: ${({ theme }) =>
+    theme.flexDirection ? theme.flexDirection : "column"};
+  flex-grow: 1;
+`;
 
 export const CardFooter = styled(CardHeader)`
   padding: 0;

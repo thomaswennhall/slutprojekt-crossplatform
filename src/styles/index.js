@@ -9,6 +9,8 @@ import {
   SafeAreaView,
   FlatList,
   Portrait,
+  TouchableAreaOpacity,
+  TouchableAreaText,
 } from "./utils";
 
 export {
@@ -22,4 +24,6 @@ export {
   SafeAreaView,
   FlatList,
   Portrait,
+  TouchableAreaOpacity,
+  TouchableAreaText,
 };
