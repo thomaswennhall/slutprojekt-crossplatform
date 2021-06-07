@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome5";
 import IconIonic from "react-native-vector-icons/Ionicons";
 const task = {
@@ -11,7 +11,7 @@ const task = {
 };
 const Task = () => {
    return (
-      <View style={style.container}>
+      <ScrollView style={style.container}>
          <View style={style.taskHeader}>
             <View style={style.taskTitle}>
                <Text style={style.title}>Do something</Text>
@@ -29,29 +29,50 @@ const Task = () => {
                </TouchableOpacity>
             </View>
          </View>
-         <View style={style.taskBody}>
-            <View style={style.descriptionHeader}>
-               <Text style={style.contentTitle}>{task.title}</Text>
-               <Text style={style.descriptionDate}>{task.date}</Text>
+         <View style={style.taskContents}>
+            <View style={style.taskBody}>
+               <View style={style.descriptionHeader}>
+                  <Text style={style.contentTitle}>{task.title}</Text>
+                  <Text style={style.descriptionDate}>{task.date}</Text>
+               </View>
+               <View style={style.descriptionBody}>
+                  <Text style={style.descriptionContent}>{task.content}</Text>
+               </View>
+               <View style={style.taskFooter}>
+                  <Text style={style.taskClient}>Client: {task.client}</Text>
+               </View>
             </View>
-            <View style={style.descriptionBody}>
-               <Text style={style.descriptionContent}>{task.content}</Text>
+            <View style={style.taskBody}>
+               <View style={style.photoHeader}>
+                  <Text style={style.contentTitle}>Photos</Text>
+               </View>
             </View>
-            <View style={style.taskFooter}>
-               <Text style={style.taskClient}>Client: {task.client}</Text>
+            <View style={style.taskBody}>
+               <View style={style.photoHeader}>
+                  <Text style={style.contentTitle}>Messages</Text>
+               </View>
+               <View style={style.messageContentWrapper}>
+                  <View style={style.taskMessage}>
+                     <Text style={style.messageTtile}>{task.title}</Text>
+                     <View style={style.messageContentBody}>
+                        <Text style={style.messageContent}>{task.content}</Text>
+                     </View>
+                     <Text style={style.messageFooter}>{task.date}</Text>
+                  </View>
+                  <View style={style.taskMessage}>
+                     <Text style={style.messageTtile}>{task.title}</Text>
+                     <View style={style.messageContentBody}>
+                        <Text style={style.messageContent}>{task.content}</Text>
+                     </View>
+                     <Text style={style.messageFooter}>{task.date}</Text>
+                  </View>
+               </View>
+               <TouchableOpacity style={style.messageButton}>
+                  <Text style={{ color: "#fff", fontWeight: "bold" }}>View all</Text>
+               </TouchableOpacity>
             </View>
          </View>
-         <View style={style.taskBody}>
-            <View style={style.photoHeader}>
-               <Text style={style.contentTitle}>Photos</Text>
-            </View>
-         </View>
-         <View style={style.taskBody}>
-            <View style={style.photoHeader}>
-               <Text style={style.contentTitle}>Messages</Text>
-            </View>
-         </View>
-      </View>
+      </ScrollView>
    );
 };
 
@@ -102,13 +123,15 @@ const style = StyleSheet.create({
       marginRight: -0.5,
       color: "#091832",
    },
+   taskContents: { marginBottom: 50 },
    taskBody: {
-      marginTop: 30,
+      marginTop: 15,
       borderRadius: 8,
       backgroundColor: "#fff",
       padding: 16,
    },
    contentTitle: {
+      fontSize: 18,
       fontWeight: "bold",
    },
    descriptionDate: {
@@ -127,6 +150,41 @@ const style = StyleSheet.create({
    taskClient: {
       fontSize: 10,
       color: "#727272",
+   },
+   taskMessage: {
+      padding: 12,
+      backgroundColor: "#FDF0E9",
+      marginTop: 8,
+      marginBottom: 8,
+      borderRadius: 8,
+   },
+   messageContentWrapper: {
+      marginTop: 16,
+   },
+   messageTtile: {
+      fontSize: 16,
+      fontWeight: "bold",
+   },
+   messageContentBody: {
+      marginTop: 8,
+      marginBottom: 8,
+   },
+   messageContent: {
+      color: "#404040",
+      fontSize: 10,
+   },
+   messageFooter: {
+      fontSize: 12,
+      textAlign: "right",
+      color: "#7A7A7A",
+   },
+   messageButton: {
+      backgroundColor: "#3B3AC9",
+      paddingTop: 8,
+      paddingBottom: 8,
+      alignItems: "center",
+      borderRadius: 6,
+      marginTop: 12,
    },
 });
 export default Task;
