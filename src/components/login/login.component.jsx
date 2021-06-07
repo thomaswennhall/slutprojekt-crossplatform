@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { AuthContext } from "../../store/authContext";
 import Input from "../input/input.component";
 import Button from "../button/button.component";
-import Modal from "../modal/successModalComponent";
+import Modal from "../modal/errorModalComponent";
 const Login = ({ toDashboard }) => {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
@@ -34,7 +34,7 @@ const Login = ({ toDashboard }) => {
       setModal(!modalVisible);
    };
    return (
-      <View style={{ width: "100%", padding: 28 }}>
+      <View style={{ width: "100%", padding: 32 }}>
          {inputs.map((input) => (
             <Input key={input.label} {...input} />
          ))}

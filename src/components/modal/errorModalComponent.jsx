@@ -1,16 +1,27 @@
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View, Image } from "react-native";
+import {
+   Alert,
+   Modal,
+   StyleSheet,
+   Text,
+   Pressable,
+   View,
+   Image,
+   TouchableOpacity,
+} from "react-native";
 
 const popUp = ({ modalVisible, toggleModalPop, str }) => {
    //    const [modalVisible, setModalVisible] = useState(true);
    return (
-      <View style={styles.centeredView}>
+      <TouchableOpacity
+         style={styles.centeredView}
+         onPress={() => toggleModalPop(!modalVisible)}
+      >
          <Modal
             animationType="slide"
             transparent={true}
             visible={modalVisible}
             onRequestClose={() => {
-               Alert.alert("Modal has been closed.");
                toggleModalPop(!modalVisible);
             }}
          >
@@ -34,7 +45,7 @@ const popUp = ({ modalVisible, toggleModalPop, str }) => {
                </View>
             </View>
          </Modal>
-      </View>
+      </TouchableOpacity>
    );
 };
 
@@ -87,6 +98,7 @@ const styles = StyleSheet.create({
       color: "white",
       fontWeight: "bold",
       textAlign: "center",
+      fontSize: 12,
    },
    modalHeader: {
       fontSize: 18,
