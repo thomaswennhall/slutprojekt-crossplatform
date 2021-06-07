@@ -31,7 +31,7 @@ const Task = () => {
          </View>
          <View style={style.taskBody}>
             <View style={style.descriptionHeader}>
-               <Text style={style.descriptionTitle}>{task.title}</Text>
+               <Text style={style.contentTitle}>{task.title}</Text>
                <Text style={style.descriptionDate}>{task.date}</Text>
             </View>
             <View style={style.descriptionBody}>
@@ -39,6 +39,16 @@ const Task = () => {
             </View>
             <View style={style.taskFooter}>
                <Text style={style.taskClient}>Client: {task.client}</Text>
+            </View>
+         </View>
+         <View style={style.taskBody}>
+            <View style={style.photoHeader}>
+               <Text style={style.contentTitle}>Photos</Text>
+            </View>
+         </View>
+         <View style={style.taskBody}>
+            <View style={style.photoHeader}>
+               <Text style={style.contentTitle}>Messages</Text>
             </View>
          </View>
       </View>
@@ -98,7 +108,7 @@ const style = StyleSheet.create({
       backgroundColor: "#fff",
       padding: 16,
    },
-   descriptionTitle: {
+   contentTitle: {
       fontWeight: "bold",
    },
    descriptionDate: {
