@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-   Alert,
    Modal,
    StyleSheet,
    Text,
@@ -13,22 +12,18 @@ import {
 const popUp = ({ modalVisible, toggleModalPop, str }) => {
    //    const [modalVisible, setModalVisible] = useState(true);
    return (
-      <View style={styles.centeredView}>
-         <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-               toggleModalPop(!modalVisible);
-            }}
-         >
+      <TouchableOpacity
+         style={styles.centeredView}
+         onPress={() => toggleModalPop(!modalVisible)}
+      >
+         <Modal animationType="slide" transparent={true} visible={modalVisible}>
             <View style={styles.centeredView}>
                <View style={styles.modalView}>
                   <Image
                      source={require("../../../assets/img/green-cicrle.png")}
                      style={styles.modalImg}
                   />
-                  <Text style={styles.modalHeader}>Successful</Text>
+                  <Text style={styles.modalHeader}>Awesome</Text>
                   <Text style={styles.modalText}>
                      porttitor eget dolor morbi non arcu risus quis varius quam quisque id
                      diam vel quam{" "}
@@ -42,7 +37,7 @@ const popUp = ({ modalVisible, toggleModalPop, str }) => {
                </View>
             </View>
          </Modal>
-      </View>
+      </TouchableOpacity>
    );
 };
 
