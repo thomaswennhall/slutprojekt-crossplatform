@@ -1,40 +1,43 @@
 import React, { useState } from "react";
-import { Alert, Modal, StyleSheet, Text, Pressable, View, Image } from "react-native";
+import {
+   Modal,
+   StyleSheet,
+   Text,
+   Pressable,
+   View,
+   Image,
+   TouchableOpacity,
+} from "react-native";
 
 const popUp = ({ modalVisible, toggleModalPop, str }) => {
    //    const [modalVisible, setModalVisible] = useState(true);
    return (
-      <View style={styles.centeredView}>
-         <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-               Alert.alert("Modal has been closed.");
-               toggleModalPop(!modalVisible);
-            }}
-         >
+      <TouchableOpacity
+         style={styles.centeredView}
+         onPress={() => toggleModalPop(!modalVisible)}
+      >
+         <Modal animationType="slide" transparent={true} visible={modalVisible}>
             <View style={styles.centeredView}>
                <View style={styles.modalView}>
                   <Image
                      source={require("../../../assets/img/green-cicrle.png")}
                      style={styles.modalImg}
                   />
-                  <Text style={styles.modalHeader}>Successful</Text>
+                  <Text style={styles.modalHeader}>Awesome</Text>
                   <Text style={styles.modalText}>
                      porttitor eget dolor morbi non arcu risus quis varius quam quisque id
                      diam vel quam{" "}
                   </Text>
-                  <Pressable
+                  <TouchableOpacity
                      style={[styles.button, styles.buttonClose]}
                      onPress={() => toggleModalPop(!modalVisible)}
                   >
-                     <Text style={styles.textStyle}>OK !</Text>
-                  </Pressable>
+                     <Text style={styles.textStyle}>OK </Text>
+                  </TouchableOpacity>
                </View>
             </View>
          </Modal>
-      </View>
+      </TouchableOpacity>
    );
 };
 
