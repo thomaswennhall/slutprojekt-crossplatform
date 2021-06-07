@@ -11,100 +11,92 @@ import {
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import RNPickerSelect from "react-native-picker-select";
 const statusData = ["Completed", "Not Completed"];
-const popUp = ({ newTaskModal, setNewTaskModal, str }) => {
+const popUp = () => {
    const [newTaskTitle, addTaskTitle] = useState("");
    const [newTaskContent, addTaskContent] = useState("");
    const [newStatus, setNewStatus] = useState();
 
    return (
-      <TouchableOpacity
-         style={styles.centeredView}
-         onPress={() => setNewTaskModal(!newTaskModal)}
-      >
-         <Modal animationType="slide" transparent={true} visible={newTaskModal}>
-            <View style={styles.centeredView}>
-               <View style={styles.modalView}>
-                  <View style={styles.editHeader}>
-                     <Text style={styles.editTitle}>Edit</Text>
-                  </View>
-                  <View style={styles.editInputs}>
-                     <Text style={styles.label}>Title</Text>
-                     <TextInput
-                        onChangeText={addTaskTitle}
-                        value={newTaskTitle}
-                        style={styles.taskInput}
+      <View style={styles.centeredView}>
+         <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+               <View style={styles.editHeader}>
+                  <Text style={styles.editTitle}>Edit</Text>
+               </View>
+               <View style={styles.editInputs}>
+                  <Text style={styles.label}>Title</Text>
+                  <TextInput
+                     onChangeText={addTaskTitle}
+                     value={newTaskTitle}
+                     style={styles.taskInput}
+                  />
+               </View>
+               <View style={styles.editInputs}>
+                  <Text style={styles.label}>Content</Text>
+                  <TextInput
+                     multiline={true}
+                     numberOfLines={5}
+                     onChangeText={addTaskContent}
+                     value={newTaskContent}
+                     style={styles.taskTextArea}
+                  />
+               </View>
+               <View style={styles.editInputs}>
+                  <Text style={styles.label}>Status</Text>
+                  <View style={[styles.taskInput, styles.dropdown]}>
+                     <RNPickerSelect
+                        placeholder={{ label: "--- Option ---" }}
+                        onValueChange={(value) => {
+                           setNewStatus(value);
+                        }}
+                        items={[
+                           { label: "Completed", value: "Completed" },
+                           { label: "Not completed", value: "Not completed" },
+                        ]}
+                        style={{ ...styles.taskInput }}
                      />
-                  </View>
-                  <View style={styles.editInputs}>
-                     <Text style={styles.label}>Content</Text>
-                     <TextInput
-                        multiline={true}
-                        numberOfLines={5}
-                        onChangeText={addTaskContent}
-                        value={newTaskContent}
-                        style={styles.taskTextArea}
-                     />
-                  </View>
-                  <View style={styles.editInputs}>
-                     <Text style={styles.label}>Status</Text>
-                     <View style={[styles.taskInput, styles.dropdown]}>
-                        <RNPickerSelect
-                           placeholder={{ label: "--- Option ---" }}
-                           onValueChange={(value) => {
-                              setNewStatus(value);
-                           }}
-                           items={[
-                              { label: "Completed", value: "Completed" },
-                              { label: "Not completed", value: "Not completed" },
-                           ]}
-                           style={{ ...styles.taskInput }}
-                        />
-                     </View>
-                  </View>
-                  <View style={styles.events}>
-                     <TouchableOpacity
-                        style={[styles.button, styles.apply]}
-                        onPress={() => setNewTaskModal(!newTaskModal)}
-                     >
-                        <Text style={styles.textStyle}>Save Task</Text>
-                     </TouchableOpacity>
-                     <TouchableOpacity
-                        style={[styles.button, styles.discard]}
-                        onPress={() => setNewTaskModal(!newTaskModal)}
-                     >
-                        <Text style={[styles.textStyle, styles.textDiscard]}>
-                           Discard task
-                        </Text>
-                     </TouchableOpacity>
                   </View>
                </View>
+               <View style={styles.events}>
+                  <TouchableOpacity
+                     style={[styles.button, styles.apply]}
+                     onPress={() => setNewTaskModal(!newTaskModal)}
+                  >
+                     <Text style={styles.textStyle}>Save Task</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                     style={[styles.button, styles.discard]}
+                     onPress={() => setNewTaskModal(!newTaskModal)}
+                  >
+                     <Text style={[styles.textStyle, styles.textDiscard]}>
+                        Discard task
+                     </Text>
+                  </TouchableOpacity>
+               </View>
             </View>
-         </Modal>
-      </TouchableOpacity>
+         </View>
+      </View>
    );
 };
 
 const styles = StyleSheet.create({
    centeredView: {
-      padding: 24,
-      flex: 1,
-      justifyContent: "center",
-      alignItems: "center",
-      backgroundColor: "rgba(52, 52, 52, 0.8)",
+      width: "100%",
+      marginTop: 16,
+      padding: 8,
    },
    modalView: {
-      width: "100%",
       backgroundColor: "white",
       borderRadius: 20,
       padding: 32,
       shadowColor: "#000",
       shadowOffset: {
          width: 0,
-         height: 2,
+         height: 0,
       },
-      shadowOpacity: 0.25,
+      shadowOpacity: 0.025,
       shadowRadius: 4,
-      elevation: 5,
+      elevation: 50,
    },
    modalImg: {
       width: "100%",
