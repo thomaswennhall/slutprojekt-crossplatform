@@ -1,53 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from "react-native";
-
-const DATA = [
-   { title: "Do something", date: "2021-05-17" },
-   { title: "Do something", date: "2021-05-17" },
-   { title: "Do something", date: "2021-05-17" },
-   { title: "Do something", date: "2021-05-17" },
-];
-const ItemTitle = ({ title }) => (
-   <View>
-      <Text style={style.taskTitle}>{title}</Text>
-   </View>
-);
-
-const TaskList = () => {
-   const renderItem = ({ item, index }) => (
-      <View style={style.task}>
-         <Text style={style.taskTitle}>
-            <ItemTitle title={item.title} />
-         </Text>
-      </View>
-   );
-
+import { View, Text } from "react-native";
+import Tasks from "../../Task/taskList";
+const TaskListScreen = ({ navigation }) => {
+   const theTask = () => {
+      navigation.navigate("TASK");
+   };
    return (
-      <View style={style.container}>
-         <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={(item, index) => index.toString()}
-         />
+      <View>
+         <Tasks toTheTask={theTask} />
       </View>
    );
 };
 
-const style = StyleSheet.create({
-   container: {
-      flex: 1,
-      padding: 32,
-   },
-   task: {
-      padding: 16,
-      height: 72,
-      backgroundColor: "#ffffff",
-      borderRadius: 8,
-      marginBottom: 16,
-   },
-   taskTitle: {},
-   taskDate: {
-      fontSize: 8,
-   },
-});
-export default TaskList;
+export default TaskListScreen;

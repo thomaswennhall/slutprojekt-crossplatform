@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { AuthContext } from "../../store/authContext";
 import Input from "../input/input.component";
 import Button from "../button/button.component";
-import Modal from "../pop-up/successModalComponent";
+import Modal from "../modal/successModalComponent";
 const Login = ({ toDashboard }) => {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
