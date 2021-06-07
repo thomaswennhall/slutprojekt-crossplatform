@@ -8,6 +8,7 @@ const Input = ({ label, secureInput, placeholder, inputHandler, color }) => {
   const themeContext = useContext(ThemeContext)
 
   const theme = {
+     ...themeContext,
     backgroundColor: themeContext.colors[color]
   }
   return (

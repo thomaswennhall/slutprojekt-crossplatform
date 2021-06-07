@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Landing from "../components/screens/landing.screen";
+import Landing from "../components/screens/landing/landing.screen";
 import Dashboard from "../components/screens/dashboard/dashboard.screen";
 import TaskCategory from "../components/screens/category/Category.screen";
 import TaskList from "../components/screens/category/TaskList.screen";
