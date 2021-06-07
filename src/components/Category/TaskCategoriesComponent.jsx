@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
+import NewTaskModal from "../modal/editTask/newTask";
 import Icon from "react-native-vector-icons/MaterialIcons";
 const CategoryListScreen = ({ notCompletedHandler }) => {
+   const [newTaskModal, setNewTaskModal] = useState(false);
+   const toggleNewTaskModal = () => {
+      setNewTaskModal(!newTaskModal);
+   };
    // const arrowRight = <Icon name="arrow-right" size={30} />;
    return (
       <View style={style.container}>
@@ -13,10 +18,11 @@ const CategoryListScreen = ({ notCompletedHandler }) => {
             <Text style={style.categoryTitle}>Completed</Text>
             <Icon name="arrow-right" style={style.icon} />
          </TouchableOpacity>
-         <TouchableOpacity onPress={notCompletedHandler} style={style.list}>
+         <TouchableOpacity onPress={toggleNewTaskModal} style={style.list}>
             <Text style={style.categoryTitle}>New task</Text>
             <Icon name="arrow-right" style={style.icon} />
          </TouchableOpacity>
+         <NewTaskModal newTaskModal={newTaskModal} setNewTaskModal={setNewTaskModal} />
       </View>
    );
 };

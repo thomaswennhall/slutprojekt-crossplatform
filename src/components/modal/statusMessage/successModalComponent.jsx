@@ -20,7 +20,7 @@ const popUp = ({ modalVisible, toggleModalPop, str }) => {
             <View style={styles.centeredView}>
                <View style={styles.modalView}>
                   <Image
-                     source={require("../../../assets/img/green-cicrle.png")}
+                     source={require("../../../../assets/img/green-cicrle.png")}
                      style={styles.modalImg}
                   />
                   <Text style={styles.modalHeader}>Awesome</Text>

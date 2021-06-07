@@ -27,7 +27,7 @@ const popUp = ({ modalVisible, toggleModalPop, str }) => {
             <View style={styles.centeredView}>
                <View style={styles.modalView}>
                   <Image
-                     source={require("../../../assets/img/red-cicrle.png")}
+                     source={require("../../../../assets/img/red-cicrle.png")}
                      style={styles.modalImg}
                   />
                   <Text style={styles.modalHeader}>Something went wrong</Text>
