@@ -20,6 +20,12 @@ export const theme = {
     heading: "Tahoma",
     text: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   },
+  fontSizes: {
+    sm: "12px",
+    default: "16px",
+    me: "18px",
+    la: "24px",
+  },
 };
 
 const Theme = ({ children }) => {

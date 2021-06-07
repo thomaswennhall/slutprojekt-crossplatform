@@ -1,14 +1,30 @@
 import styled from "styled-components";
 import { theme as themeTyped } from "../theme";
 import { Text } from "./text.styling";
+import {
+  background,
+  debug,
+  padding,
+  height,
+  width,
+  flexAlignItems,
+  margin,
+  flexDirection,
+  flexJustifyContent,
+  borderRadius,
+} from "../styling.utils";
 export const TouchableAreaOpacity = styled.TouchableOpacity`
-  background: ${({ theme }) =>
-    theme.background ? theme.background : themeTyped.colors.accentBlue};
-  padding: 16px 24px;
-  border-radius: ${({ theme }) =>
-    theme.borderRadius ? theme.borderRadius : "8px"};
-  align-self: ${({ theme }) => theme.alignSelf || "center"};
-  min-width: 100px;
+  display: flex;
+  background: ${(props) => background(props)};
+  padding: ${(props) => padding(props)};
+  margin: ${(props) => margin(props)};
+  width: ${(props) => width(props)};
+  height: ${(props) => height(props)};
+  align-items: ${(props) => flexAlignItems(props)};
+  flex-direction: ${(props) => flexDirection(props)};
+  justify-content: ${(props) => flexJustifyContent(props)};
+  border-radius: ${(props) => borderRadius(props)};
+  border: ${(props) => debug(props)};
 `;
 
 export const TouchableAreaText = styled(Text)`

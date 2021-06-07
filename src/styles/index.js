@@ -1,11 +1,5 @@
 import {
-  CardHeader,
-  CardWrapper,
-  CardFooter,
-  CardContent,
-  ColumnContainer,
   Container,
-  RowContainer,
   SafeAreaView,
   FlatList,
   Portrait,
@@ -14,13 +8,7 @@ import {
 } from "./utils";
 
 export {
-  CardHeader,
-  CardWrapper,
-  CardFooter,
-  CardContent,
-  ColumnContainer,
   Container,
-  RowContainer,
   SafeAreaView,
   FlatList,
   Portrait,

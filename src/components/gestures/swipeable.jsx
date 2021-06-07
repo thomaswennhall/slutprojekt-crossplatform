@@ -1,6 +1,5 @@
 import React from "react";
 import { Swipeable } from "react-native-gesture-handler";
-
 const SwipeableGesture = ({
   leftActionHandler,
   rightActionHandler,

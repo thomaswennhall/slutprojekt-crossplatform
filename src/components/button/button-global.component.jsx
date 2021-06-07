@@ -6,7 +6,6 @@ const Button = ({ onPressHandler, textStyling, containerStyling, text }) => (
     theme={{ ...containerStyling }}
     onPress={onPressHandler}
   >
-    {console.log(containerStyling)}
     <TouchableAreaText theme={{ ...textStyling }}>{text}</TouchableAreaText>
   </TouchableAreaOpacity>
 );

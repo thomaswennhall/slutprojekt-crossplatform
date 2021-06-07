@@ -1,3 +1,23 @@
-import { MessageAuthor, MessageTitle, MessageContent } from "./message.styling";
+import {
+  MessageAuthor,
+  MessageTitle,
+  MessageContentText,
+  MessageDate,
+  MessageFooter,
+  MessageWrapper,
+  MessageHeaderContainer,
+  MessageContentContainer,
+  MessageFooterContainer,
+} from "./message.styling";
 
-export { MessageAuthor, MessageTitle, MessageContent };
+export {
+  MessageAuthor,
+  MessageTitle,
+  MessageContentText,
+  MessageDate,
+  MessageWrapper,
+  MessageHeaderContainer,
+  MessageContentContainer,
+  MessageFooterContainer,
+  MessageFooter,
+};
