@@ -15,6 +15,7 @@ const Action = ({
       style={[
         styles.button,
         styles[color],
+        styles.button,
         dashboardButton ? styles.dashboardButton : "",
         logoutButton ? styles.logoutButton : "",
         saveButton ? styles.saveButton : "",
