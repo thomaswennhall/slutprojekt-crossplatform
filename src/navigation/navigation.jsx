@@ -5,9 +5,8 @@ import Landing from "../components/screens/landing.screen";
 import Dashboard from "../components/screens/dashboard/dashboard.screen";
 import TaskCategory from "../components/screens/category/Category.screen";
 import TaskList from "../components/screens/category/TaskList.screen";
-import Profile from "../components/screens/profile.screen";
-import TaskMessages from "../components/screens/task-messages/task-messages.screen";
-
+import Task from "../components/screens/task/task.screen";
+import NewTask from "../components/screens/task/newTask.screen";
 export const ScreenName = {
   LANDING: "Landing",
   DASHBOARD: "Dashboard",
@@ -15,8 +14,8 @@ export const ScreenName = {
   TEST: "Test",
   CATEGORY: "Category",
   TASKLIST: "Task list",
-  PROFILE: "Profile",
-  MESSAGES: "Messages",
+  TASK: "TASK",
+  NEWTASK: "New task",
 };
 
 const Stack = createStackNavigator();

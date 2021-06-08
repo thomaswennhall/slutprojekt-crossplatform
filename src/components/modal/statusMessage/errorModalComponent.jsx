@@ -27,7 +27,7 @@ const popUp = ({ modalVisible, toggleModalPop, str }) => {
             <View style={styles.centeredView}>
                <View style={styles.modalView}>
                   <Image
-                     source={require("../../../assets/img/red-cicrle.png")}
+                     source={require("../../../../assets/img/red-cicrle.png")}
                      style={styles.modalImg}
                   />
                   <Text style={styles.modalHeader}>Something went wrong</Text>
@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
-      marginTop: 22,
       backgroundColor: "rgba(52, 52, 52, 0.8)",
    },
    modalView: {
