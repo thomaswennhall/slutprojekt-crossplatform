@@ -3,15 +3,8 @@ import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from "react-nati
 import IconFontAwesome from "react-native-vector-icons/FontAwesome5";
 import IconIonic from "react-native-vector-icons/Ionicons";
 import EditTask from "../modal/editTask/editTask";
-const task = {
-   title: "Do something",
-   content:
-      "porttitor eget dolor morbi non arcu risus quis varius quam quisque id diam vel quam elementum pulvinar etiam non quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit amet",
-   date: "2021-05-27",
-   client: "Mooms",
-};
 
-const Task = () => {
+const Task = ({ task }) => {
    const [editModal, setEditModal] = useState(false);
    const toggleEditModal = () => {
       setEditModal(!editModal);
@@ -21,7 +14,7 @@ const Task = () => {
          <ScrollView style={style.container}>
             <View style={style.taskHeader}>
                <View style={style.taskTitle}>
-                  <Text style={style.title}>Do something</Text>
+                  <Text style={style.title}>{task.title}</Text>
                </View>
                <View style={style.bages}>
                   <TouchableOpacity
@@ -43,13 +36,13 @@ const Task = () => {
                <View style={style.taskBody}>
                   <View style={style.descriptionHeader}>
                      <Text style={style.contentTitle}>{task.title}</Text>
-                     <Text style={style.descriptionDate}>{task.date}</Text>
+                     {/* <Text style={style.descriptionDate}>{task.date}</Text>  */}
                   </View>
                   <View style={style.descriptionBody}>
-                     <Text style={style.descriptionContent}>{task.content}</Text>
+                     <Text style={style.descriptionContent}>{task.info}</Text>
                   </View>
                   <View style={style.taskFooter}>
-                     <Text style={style.taskClient}>Client: {task.client}</Text>
+                     <Text style={style.taskClient}>Client: {task.clientId}</Text>
                   </View>
                </View>
                <View style={style.taskBody}>
@@ -61,7 +54,7 @@ const Task = () => {
                   <View style={style.photoHeader}>
                      <Text style={style.contentTitle}>Messages</Text>
                   </View>
-                  <View style={style.messageContentWrapper}>
+                  {/* <View style={style.messageContentWrapper}>
                      <View style={style.taskMessage}>
                         <Text style={style.messageTtile}>{task.title}</Text>
                         <View style={style.messageContentBody}>
@@ -76,7 +69,7 @@ const Task = () => {
                         </View>
                         <Text style={style.messageFooter}>{task.date}</Text>
                      </View>
-                  </View>
+                  </View> */}
                   <TouchableOpacity style={style.messageButton}>
                      <Text style={{ color: "#fff", fontWeight: "bold" }}>View all</Text>
                   </TouchableOpacity>

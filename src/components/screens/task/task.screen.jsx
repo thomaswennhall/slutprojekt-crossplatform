@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text } from "react-native";
 import Task from "../../Task/theTask";
-const TaskScreen = () => {
+import { UserContext } from "../../../store/userContext";
+const TaskScreen = ({ route }) => {
+   const { id } = route.params;
+   const { findTaskById } = useContext(UserContext);
+   const task = findTaskById(id);
    return (
       <View>
-         <Task />
+         <Task task={task} />
       </View>
    );
 };
