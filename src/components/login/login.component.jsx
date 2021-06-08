@@ -12,7 +12,7 @@ import Modal from "../modal/statusMessage/errorModalComponent";
 const Login = ({ toDashboard }) => {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
-
+   const [modalVisible, setModal] = useState(false);
    const inputs = [
       {
          label: "Username",
