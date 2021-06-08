@@ -4,7 +4,7 @@ import { AuthContext } from "../../store/authContext";
 import Input from "../input/input.component";
 import Button from "../button/button.component";
 import Modal from "../modal/errorModalComponent";
-const Login = ({ toDashboard }) => {
+const Login = ({ loginErrorHandler }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,6 +15,7 @@ const Login = ({ toDashboard }) => {
       inputHandler: (input) => {
         setUsername(input);
       },
+      value: "",
     },
     {
       label: "Password",
@@ -23,12 +24,18 @@ const Login = ({ toDashboard }) => {
       inputHandler: (input) => {
         setPassword(input);
       },
+      value: "",
     },
   ];
-  const { singIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const pressHandler = async () => {
-    await singIn(username, password);
-    toDashboard();
+    try {
+      await signIn(username, password);
+      setUsername("");
+      setPassword("");
+    } catch (err) {
+      loginErrorHandler();
+    }
   };
 
   return (

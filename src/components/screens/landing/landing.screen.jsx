@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import Logo from "@/components/logo/logo.component";
 import Login from "@/components/login/login.component";
+import { AuthContext } from "@/store/authContext";
 const LandingScreen = ({ navigation }) => {
-  const [userState, setUserState] = useState(null);
+  const { token } = useContext(AuthContext);
   useEffect(() => {
-    if (userState) {
+    if (token) {
       navigation.navigate("Dashboard");
+      console.log(token, "token");
     }
+    console.log(token, "no-token");
+
+    return () => console.log("Hello");
   }, []);
   const loginHandler = (username, password) => {
     console.log(username, password);
