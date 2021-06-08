@@ -16,7 +16,7 @@ const MessagesListItem = ({ author, title, content, date }) => {
 
   return (
     <SwipeableGesture rightActionHandler={() => <MessageActionPanel />}>
-      <MessageWrapper theme={{ padding: "0 20px" }}>
+      <MessageWrapper theme={{ padding: "0 10px" }}>
         <TouchableAreaOpacity onPress={showHideContent}>
           <MessageHeader author={author} title={title} />
           {toggleContent && <MessageContent content={content} />}

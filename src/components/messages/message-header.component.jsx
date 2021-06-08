@@ -8,6 +8,7 @@ import {
 import { Portrait } from "@/styles";
 import { ThemeContext } from "styled-components";
 import { Dimensions } from "react-native";
+import MessageCheckbox from "./message-checkbox.component";
 
 const MessageHeader = ({ author, title }) => {
   const themeContext = useContext(ThemeContext);
@@ -31,6 +32,7 @@ const MessageHeader = ({ author, title }) => {
         width: Dimensions.get("window").width,
       }}
     >
+      <MessageCheckbox read={true} />
       <MessageTitle theme={{ fontSize: themeContext.fontSizes.me }}>
         {title}
       </MessageTitle>

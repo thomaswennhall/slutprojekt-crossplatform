@@ -25,8 +25,4 @@ export const MessageHeaderContainer = styled(Container)`
 
 export const MessageContentContainer = styled(Container)``;
 
-export const MessageFooterContainer = styled(Container)`
-  border-bottom-color: rgba(0, 0, 0, 0.3);
-  border-bottom-width: 3px;
-  border-style: solid;
-`;
+export const MessageFooterContainer = styled(Container)``;

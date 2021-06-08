@@ -4,7 +4,7 @@ import { ActionPanelWrapper } from "@/styles/action-panel";
 import { ThemeContext } from "styled-components";
 import { Dimensions } from "react-native";
 
-const MessageActionPanel = ({ theme }) => {
+const MessageActionPanel = () => {
   const themeContext = useContext(ThemeContext);
   return (
     <ActionPanelWrapper
