@@ -21,7 +21,7 @@ const popUp = () => {
          <View style={styles.centeredView}>
             <View style={styles.modalView}>
                <View style={styles.editHeader}>
-                  <Text style={styles.editTitle}>Edit</Text>
+                  <Text style={styles.editTitle}>{newTaskTitle}</Text>
                </View>
                <View style={styles.editInputs}>
                   <Text style={styles.label}>Title</Text>
