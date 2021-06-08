@@ -44,7 +44,6 @@ const UpdateProfile = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 20,
     width: '80%'
   },
   header: {

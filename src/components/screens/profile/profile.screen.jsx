@@ -1,5 +1,5 @@
 import React from 'react' 
-import {SafeAreaView, StyleSheet} from 'react-native' 
+import {KeyboardScreen} from '@/styles/screen/keyboardScreen'
 import UpdateProfile from '@/components/updateProfile/update-profile.component'
 import DashboardProfile from '@/components/dashboard/profile/profile.component'
 
@@ -10,21 +10,11 @@ const ProfileScreen = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <KeyboardScreen behavior="padding" >
       <DashboardProfile {...user} />
       <UpdateProfile />
-    </SafeAreaView>
+    </KeyboardScreen>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'column', 
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    height: '100%'
-  }
-})
 
 export default ProfileScreen

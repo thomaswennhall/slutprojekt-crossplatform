@@ -1,5 +1,5 @@
 import React from "react";
-import {KeyboardScreen} from './styled'
+import {KeyboardScreen} from '@/styles/screen/keyboardScreen'
 import Logo from "@/components/logo/logo.component";
 import Login from "@/components/login/login.component";
 
