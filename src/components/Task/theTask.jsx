@@ -1,18 +1,44 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, ScrollView } from "react-native";
+import {
+   StyleSheet,
+   View,
+   Text,
+   TouchableOpacity,
+   ScrollView,
+   FlatList,
+} from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome5";
 import IconIonic from "react-native-vector-icons/Ionicons";
 import EditTask from "../modal/editTask/editTask";
 
+const Messages = ({ title, content, date }) => (
+   <View style={style.taskMessage}>
+      <Text style={style.messageTtile}>{title}</Text>
+      <View style={style.messageContentBody}>
+         <Text style={style.messageContent}>{content}</Text>
+      </View>
+      <Text style={style.messageFooter}>{date}</Text>
+   </View>
+);
 const Task = ({ task }) => {
    const [editModal, setEditModal] = useState(false);
    const toggleEditModal = () => {
       setEditModal(!editModal);
    };
-   const dateNTime = task.createdAt;
-   const date = dateNTime.split("T")[0];
+   const splitDateNTime = (dateNTime) => {
+      return dateNTime.split("T")[0];
+   };
    const dateNTimeMessage = task.createdAt;
    const dateMessage = dateNTimeMessage.split("T")[0];
+   const renderItem = ({ item }) => (
+      <View>
+         <Messages
+            title={item.title}
+            content={item.content}
+            date={splitDateNTime(item.createdAt)}
+         />
+      </View>
+   );
    return (
       <View>
          <ScrollView style={style.container}>
@@ -40,7 +66,9 @@ const Task = ({ task }) => {
                <View style={style.taskBody}>
                   <View style={style.descriptionHeader}>
                      <Text style={style.contentTitle}>{task.title}</Text>
-                     <Text style={style.descriptionDate}>{date}</Text>
+                     <Text style={style.descriptionDate}>
+                        {splitDateNTime(task.createdAt)}
+                     </Text>
                   </View>
                   <View style={style.descriptionBody}>
                      <Text style={style.descriptionContent}>{task.info}</Text>
@@ -54,27 +82,25 @@ const Task = ({ task }) => {
                      <Text style={style.contentTitle}>Photos</Text>
                   </View>
                </View>
-               <View style={style.taskBody}>
-                  <View style={style.photoHeader}>
-                     <Text style={style.contentTitle}>Messages</Text>
-                  </View>
-                  <View style={style.messageContentWrapper}>
-                     <View style={style.taskMessage}>
-                        <Text style={style.messageTtile}>{task.messages[0].title}</Text>
-                        <View style={style.messageContentBody}>
-                           <Text style={style.messageContent}>
-                              {task.messages[0].content}
-                           </Text>
-                        </View>
-                        <Text style={style.messageFooter}>{dateMessage}</Text>
-                     </View>
-                  </View>
-                  <TouchableOpacity style={style.messageButton}>
-                     <Text style={{ color: "#fff", fontWeight: "bold" }}>View all</Text>
-                  </TouchableOpacity>
-               </View>
             </View>
          </ScrollView>
+         <View style={style.messagesBody}>
+            <View style={style.taskBody}>
+               <View style={style.photoHeader}>
+                  <Text style={style.contentTitle}>Messages</Text>
+                  <View style={style.messageContentWrapper}>
+                     <FlatList
+                        data={task.messages}
+                        renderItem={renderItem}
+                        keyExtractor={(item, index) => index.toString()}
+                     />
+                  </View>
+               </View>
+               <TouchableOpacity style={style.messageButton}>
+                  <Text style={{ color: "#fff", fontWeight: "bold" }}>View all</Text>
+               </TouchableOpacity>
+            </View>
+         </View>
          <EditTask editModal={editModal} toggleEditModal={toggleEditModal} />
       </View>
    );
@@ -83,7 +109,7 @@ const Task = ({ task }) => {
 const style = StyleSheet.create({
    container: {
       padding: 32,
-      marginBottom: 50,
+      paddingBottom: 0,
    },
    taskHeader: {
       width: "100%",
@@ -128,7 +154,7 @@ const style = StyleSheet.create({
       marginRight: -0.5,
       color: "#091832",
    },
-   taskContents: { marginBottom: 50 },
+   // taskContents: { marginBottom: 50 },
    taskBody: {
       marginTop: 15,
       borderRadius: 8,
@@ -155,6 +181,10 @@ const style = StyleSheet.create({
    taskClient: {
       fontSize: 10,
       color: "#727272",
+   },
+   messagesBody: {
+      padding: 32,
+      paddingTop: 0,
    },
    taskMessage: {
       padding: 12,
