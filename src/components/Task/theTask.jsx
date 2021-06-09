@@ -11,6 +11,8 @@ const Task = ({ task }) => {
    };
    const dateNTime = task.createdAt;
    const date = dateNTime.split("T")[0];
+   const dateNTimeMessage = task.createdAt;
+   const dateMessage = dateNTimeMessage.split("T")[0];
    return (
       <View>
          <ScrollView style={style.container}>
@@ -56,22 +58,17 @@ const Task = ({ task }) => {
                   <View style={style.photoHeader}>
                      <Text style={style.contentTitle}>Messages</Text>
                   </View>
-                  {/* <View style={style.messageContentWrapper}>
+                  <View style={style.messageContentWrapper}>
                      <View style={style.taskMessage}>
-                        <Text style={style.messageTtile}>{task.title}</Text>
+                        <Text style={style.messageTtile}>{task.messages[0].title}</Text>
                         <View style={style.messageContentBody}>
-                           <Text style={style.messageContent}>{task.content}</Text>
+                           <Text style={style.messageContent}>
+                              {task.messages[0].content}
+                           </Text>
                         </View>
-                        <Text style={style.messageFooter}>{task.date}</Text>
+                        <Text style={style.messageFooter}>{dateMessage}</Text>
                      </View>
-                     <View style={style.taskMessage}>
-                        <Text style={style.messageTtile}>{task.title}</Text>
-                        <View style={style.messageContentBody}>
-                           <Text style={style.messageContent}>{task.content}</Text>
-                        </View>
-                        <Text style={style.messageFooter}>{task.date}</Text>
-                     </View>
-                  </View> */}
+                  </View>
                   <TouchableOpacity style={style.messageButton}>
                      <Text style={{ color: "#fff", fontWeight: "bold" }}>View all</Text>
                   </TouchableOpacity>
