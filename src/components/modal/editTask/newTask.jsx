@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
    Modal,
    StyleSheet,
@@ -8,14 +8,22 @@ import {
    Image,
    TouchableOpacity,
 } from "react-native";
+import * as API from "../../../api/index";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import RNPickerSelect from "react-native-picker-select";
+import { AuthContext } from "../../../store/authContext";
 const statusData = ["Completed", "Not Completed"];
 const popUp = () => {
+   const { token } = useContext(AuthContext);
    const [newTaskTitle, addTaskTitle] = useState("");
    const [newTaskContent, addTaskContent] = useState("");
    const [newStatus, setNewStatus] = useState();
-
+   const postNewTask = async () => {
+      await API.newTask(token, newTaskTitle, newTaskContent);
+   };
+   // const postNewTask = () => {
+   //    API.newTask(token, newTaskTitle, newTaskContent);
+   // };
    return (
       <View style={styles.centeredView}>
          <View style={styles.centeredView}>
@@ -60,13 +68,13 @@ const popUp = () => {
                <View style={styles.events}>
                   <TouchableOpacity
                      style={[styles.button, styles.apply]}
-                     onPress={() => setNewTaskModal(!newTaskModal)}
+                     onPress={() => postNewTask()}
                   >
                      <Text style={styles.textStyle}>Save Task</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                      style={[styles.button, styles.discard]}
-                     onPress={() => setNewTaskModal(!newTaskModal)}
+                     onPress={() => console.log(token)}
                   >
                      <Text style={[styles.textStyle, styles.textDiscard]}>
                         Discard task

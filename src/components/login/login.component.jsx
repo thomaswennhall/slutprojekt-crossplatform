@@ -42,15 +42,6 @@ const Login = ({ loginErrorHandler }) => {
          loginErrorHandler();
       }
    };
-
-   const { singIn } = useContext(AuthContext);
-   // const pressHandler = async () => {
-   //   await singIn(username, password);
-   //   toDashboard();
-   // };
-   //  const toggleModalPop = () => {
-   //     setModal(!loginErrorHandler);
-   //  };
    return (
       <KeyboardAvoidingView
          behavior={Platform.OS === "ios" ? "padding" : "height"}

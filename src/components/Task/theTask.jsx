@@ -28,8 +28,6 @@ const Task = ({ task }) => {
    const splitDateNTime = (dateNTime) => {
       return dateNTime.split("T")[0];
    };
-   const dateNTimeMessage = task.createdAt;
-   const dateMessage = dateNTimeMessage.split("T")[0];
    const renderItem = ({ item }) => (
       <View>
          <Messages

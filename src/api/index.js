@@ -27,16 +27,35 @@ export const getUserProfile = async (token) => {
       console.log(err);
    }
 };
-
-export const getTaskMessages = async (token, taskId) => {
+export const newTask = async (token, taskTitle, taskContent) => {
    try {
-      const response = await API.get(`/tasks/${taskId}/messages`, {
+      await API.post("/tasks", {
          headers: {
             Authorization: `Bearer ${token}`,
          },
+         body: {
+            title: "taskTitle",
+            info: "taskContent",
+            clientId: "60c06853e7d2352125a189d2",
+         },
       });
-      console.log(response);
    } catch (err) {
-      console.log(err);
+      throw new Error(err.message);
    }
 };
+
+// export const newTask = async (token) => {
+//    try {
+//       const res = await API.get("/tasks", {
+//          headers: {
+//             Authorization: `Bearer ${token}`,
+//          },
+//       });
+//       console.log(res);
+//    } catch (err) {
+//       throw new Error(err.message);
+//    }
+// };
+// export const newTask = (token, taskTitle, taskContent) => {
+//    console.log(token, taskTitle, taskContent);
+// };
