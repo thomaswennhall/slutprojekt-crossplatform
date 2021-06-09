@@ -3,7 +3,6 @@ import { registerRootComponent } from 'expo'
 import Navigation from './navigation/navigation'
 import { AuthContextProvider } from './store/authContext'
 import Theme from '@/styles/theme'
-import { View, Text } from 'react-native'
 import { Loader } from './styles/animation/loader'
 import {
   useFonts,
@@ -24,9 +23,10 @@ const App = () => {
     NotoSansJP_700Bold,
     NotoSansJP_900Black
   })
-  /* if (!fontsLoaded) { */
-  return <Loader size={80} />
-  /* } else {
+
+  if (!fontsLoaded) {
+    return <Loader size={80} />
+  } else {
     return (
       <AuthContextProvider>
         <Theme>
@@ -34,7 +34,7 @@ const App = () => {
         </Theme>
       </AuthContextProvider>
     )
-  } */
+  }
 }
 
 export default registerRootComponent(App)
