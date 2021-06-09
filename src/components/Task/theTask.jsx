@@ -72,7 +72,7 @@ const Task = ({ task }) => {
                      <Text style={style.descriptionContent}>{task.info}</Text>
                   </View>
                   <View style={style.taskFooter}>
-                     <Text style={style.taskClient}>Client: {task.clientId}</Text>
+                     <Text style={style.taskClient}>Client: {task.client}</Text>
                   </View>
                </View>
                <View style={style.taskBody}>
