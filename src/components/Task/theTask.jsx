@@ -9,6 +9,8 @@ const Task = ({ task }) => {
    const toggleEditModal = () => {
       setEditModal(!editModal);
    };
+   const dateNTime = task.createdAt;
+   const date = dateNTime.split("T")[0];
    return (
       <View>
          <ScrollView style={style.container}>
@@ -36,7 +38,7 @@ const Task = ({ task }) => {
                <View style={style.taskBody}>
                   <View style={style.descriptionHeader}>
                      <Text style={style.contentTitle}>{task.title}</Text>
-                     {/* <Text style={style.descriptionDate}>{task.date}</Text>  */}
+                     <Text style={style.descriptionDate}>{date}</Text>
                   </View>
                   <View style={style.descriptionBody}>
                      <Text style={style.descriptionContent}>{task.info}</Text>

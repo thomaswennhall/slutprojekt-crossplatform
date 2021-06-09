@@ -27,3 +27,16 @@ export const getUserProfile = async (token) => {
       console.log(err);
    }
 };
+
+export const getTaskMessages = async (token, taskId) => {
+   try {
+      const response = await API.get(`/tasks/${taskId}/messages`, {
+         headers: {
+            Authorization: `Bearer ${token}`,
+         },
+      });
+      console.log(response);
+   } catch (err) {
+      console.log(err);
+   }
+};
