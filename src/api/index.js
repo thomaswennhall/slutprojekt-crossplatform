@@ -1,7 +1,7 @@
 import axios from "axios";
 const PORT = 4200;
 // const API = axios.create({ baseURL: `http://10.0.2.2:${PORT}/api/v1/` });
-const API = axios.create({ baseURL: `http://localhost:${PORT}/api/v1/` });
+const API = axios.create({ baseURL: `http://192.168.50.235:${PORT}/api/v1/` });
 
 export async function signIn(username, password) {
    try {
@@ -28,17 +28,23 @@ export const getUserProfile = async (token) => {
    }
 };
 export const newTask = async (token, taskTitle, taskContent) => {
+   console.log(token);
    try {
-      await API.post("/tasks", {
-         headers: {
-            Authorization: `Bearer ${token}`,
+      const res = await API.post(
+         "/tasks",
+         {
+            title: taskTitle,
+            info: taskContent,
+            clientId: "60c1d7e36af45a7417371c19",
          },
-         body: {
-            title: "taskTitle",
-            info: "taskContent",
-            clientId: "60c06853e7d2352125a189d2",
-         },
-      });
+         {
+            headers: {
+               "Content-Type": "application/json",
+               Authorization: `Bearer ${token}`,
+            },
+         }
+      );
+      return res;
    } catch (err) {
       throw new Error(err.message);
    }

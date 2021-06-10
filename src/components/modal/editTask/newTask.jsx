@@ -12,14 +12,16 @@ import * as API from "../../../api/index";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import RNPickerSelect from "react-native-picker-select";
 import { AuthContext } from "../../../store/authContext";
+import { UserContext } from "../../../store/userContext";
 const statusData = ["Completed", "Not Completed"];
 const popUp = () => {
    const { token } = useContext(AuthContext);
+   const { newTask } = useContext(UserContext);
    const [newTaskTitle, addTaskTitle] = useState("");
    const [newTaskContent, addTaskContent] = useState("");
    const [newStatus, setNewStatus] = useState();
-   const postNewTask = async () => {
-      await API.newTask(token, newTaskTitle, newTaskContent);
+   const postNewTask = () => {
+      newTask(token, newTaskTitle, newTaskContent);
    };
    // const postNewTask = () => {
    //    API.newTask(token, newTaskTitle, newTaskContent);

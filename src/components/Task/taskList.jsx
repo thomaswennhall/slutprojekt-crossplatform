@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, FlatList } from "react-native";
 import { UserContext } from "../../store/userContext";
 const ItemTitle = ({ title, date, onPress }) => (
@@ -8,6 +8,9 @@ const ItemTitle = ({ title, date, onPress }) => (
 );
 const TaskList = ({ toTheTask }) => {
    const { user } = useContext(UserContext);
+   // useEffect(()=> {
+
+   // })
    const renderItem = ({ item, index }) => {
       return (
          <View>

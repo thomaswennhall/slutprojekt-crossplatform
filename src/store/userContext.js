@@ -9,12 +9,18 @@ const UserContextProvider = ({ children }) => {
       const res = await API.getUserProfile(token);
       setUser(res);
    };
+   const newTask = async (token, title, content) => {
+      const newTask = await API.newTask(token, title, content);
+      setUser({ ...user, tasks: [...user.tasks, newTask] });
+   };
    const clearUser = () => setUser({});
    const findTaskById = (id) => {
       return user.tasks.find((task) => task._id === id);
    };
    return (
-      <UserContext.Provider value={{ user, setUserProfile, clearUser, findTaskById }}>
+      <UserContext.Provider
+         value={{ user, setUserProfile, clearUser, findTaskById, newTask }}
+      >
          {children}
       </UserContext.Provider>
    );
