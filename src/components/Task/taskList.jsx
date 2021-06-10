@@ -8,9 +8,6 @@ const ItemTitle = ({ title, date, onPress }) => (
 );
 const TaskList = ({ toTheTask }) => {
    const { user } = useContext(UserContext);
-   // useEffect(()=> {
-
-   // })
    const renderItem = ({ item, index }) => {
       return (
          <View>

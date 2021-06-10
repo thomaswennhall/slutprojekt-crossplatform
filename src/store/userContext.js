@@ -4,14 +4,18 @@ const UserContext = React.createContext();
 
 const UserContextProvider = ({ children }) => {
    const [user, setUser] = useState({});
-
+   const [clients, setClients] = useState([]);
    const setUserProfile = async (token) => {
       const res = await API.getUserProfile(token);
       setUser(res);
    };
-   const newTask = async (token, title, content) => {
-      const newTask = await API.newTask(token, title, content);
+   const newTask = async (token, title, content, clientId) => {
+      const newTask = await API.newTask(token, title, content, clientId);
       setUser({ ...user, tasks: [...user.tasks, newTask] });
+   };
+   const setClientList = async (token) => {
+      const allClients = await API.getClients(token);
+      setClients([...allClients]);
    };
    const clearUser = () => setUser({});
    const findTaskById = (id) => {
@@ -19,7 +23,15 @@ const UserContextProvider = ({ children }) => {
    };
    return (
       <UserContext.Provider
-         value={{ user, setUserProfile, clearUser, findTaskById, newTask }}
+         value={{
+            user,
+            setUserProfile,
+            clearUser,
+            findTaskById,
+            newTask,
+            setClientList,
+            clients,
+         }}
       >
          {children}
       </UserContext.Provider>

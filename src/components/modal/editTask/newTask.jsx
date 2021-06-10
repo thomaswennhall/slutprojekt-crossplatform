@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
    Modal,
    StyleSheet,
@@ -13,19 +13,22 @@ import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import RNPickerSelect from "react-native-picker-select";
 import { AuthContext } from "../../../store/authContext";
 import { UserContext } from "../../../store/userContext";
-const statusData = ["Completed", "Not Completed"];
-const popUp = () => {
+const popUp = ({ sendBack }) => {
    const { token } = useContext(AuthContext);
-   const { newTask } = useContext(UserContext);
+   const { newTask, setClientList, clients } = useContext(UserContext);
    const [newTaskTitle, addTaskTitle] = useState("");
    const [newTaskContent, addTaskContent] = useState("");
-   const [newStatus, setNewStatus] = useState();
-   const postNewTask = () => {
-      newTask(token, newTaskTitle, newTaskContent);
+   const [clientId, setClientId] = useState("");
+   const postNewTask = async () => {
+      await newTask(token, newTaskTitle, newTaskContent, clientId);
+      sendBack();
    };
-   // const postNewTask = () => {
-   //    API.newTask(token, newTaskTitle, newTaskContent);
-   // };
+   useEffect(() => {
+      const initClients = async () => {
+         await setClientList(token);
+      };
+      initClients();
+   }, []);
    return (
       <View style={styles.centeredView}>
          <View style={styles.centeredView}>
@@ -57,12 +60,12 @@ const popUp = () => {
                      <RNPickerSelect
                         placeholder={{ label: "--- Option ---" }}
                         onValueChange={(value) => {
-                           setNewStatus(value);
+                           setClientId(value);
                         }}
-                        items={[
-                           { label: "Completed", value: "Completed" },
-                           { label: "Not completed", value: "Not completed" },
-                        ]}
+                        items={clients.map((client) => ({
+                           label: client.username,
+                           value: client._id,
+                        }))}
                         style={{ ...styles.taskInput }}
                      />
                   </View>

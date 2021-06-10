@@ -27,15 +27,14 @@ export const getUserProfile = async (token) => {
       console.log(err);
    }
 };
-export const newTask = async (token, taskTitle, taskContent) => {
-   console.log(token);
+export const newTask = async (token, taskTitle, taskContent, clientId) => {
    try {
       const res = await API.post(
          "/tasks",
          {
             title: taskTitle,
             info: taskContent,
-            clientId: "60c1d7e36af45a7417371c19",
+            clientId,
          },
          {
             headers: {
@@ -44,24 +43,20 @@ export const newTask = async (token, taskTitle, taskContent) => {
             },
          }
       );
-      return res;
+      return res.data.data;
    } catch (err) {
       throw new Error(err.message);
    }
 };
 
-// export const newTask = async (token) => {
-//    try {
-//       const res = await API.get("/tasks", {
-//          headers: {
-//             Authorization: `Bearer ${token}`,
-//          },
-//       });
-//       console.log(res);
-//    } catch (err) {
-//       throw new Error(err.message);
-//    }
-// };
-// export const newTask = (token, taskTitle, taskContent) => {
-//    console.log(token, taskTitle, taskContent);
-// };
+export const getClients = async (token) => {
+   try {
+      const res = await API.get("/users?role=client", {
+         headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log(res.data.data);
+      return res.data.data;
+   } catch (err) {
+      throw new Error(err.message);
+   }
+};
