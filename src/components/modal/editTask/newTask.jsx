@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
    Modal,
    StyleSheet,
@@ -8,14 +8,27 @@ import {
    Image,
    TouchableOpacity,
 } from "react-native";
+import * as API from "../../../api/index";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import RNPickerSelect from "react-native-picker-select";
-const statusData = ["Completed", "Not Completed"];
-const popUp = () => {
+import { AuthContext } from "../../../store/authContext";
+import { UserContext } from "../../../store/userContext";
+const popUp = ({ sendBack }) => {
+   const { token } = useContext(AuthContext);
+   const { newTask, setClientList, clients } = useContext(UserContext);
    const [newTaskTitle, addTaskTitle] = useState("");
    const [newTaskContent, addTaskContent] = useState("");
-   const [newStatus, setNewStatus] = useState();
-
+   const [clientId, setClientId] = useState("");
+   const postNewTask = async () => {
+      await newTask(token, newTaskTitle, newTaskContent, clientId);
+      sendBack();
+   };
+   useEffect(() => {
+      const initClients = async () => {
+         await setClientList(token);
+      };
+      initClients();
+   }, []);
    return (
       <View style={styles.centeredView}>
          <View style={styles.centeredView}>
@@ -47,12 +60,12 @@ const popUp = () => {
                      <RNPickerSelect
                         placeholder={{ label: "--- Option ---" }}
                         onValueChange={(value) => {
-                           setNewStatus(value);
+                           setClientId(value);
                         }}
-                        items={[
-                           { label: "Completed", value: "Completed" },
-                           { label: "Not completed", value: "Not completed" },
-                        ]}
+                        items={clients.map((client) => ({
+                           label: client.username,
+                           value: client._id,
+                        }))}
                         style={{ ...styles.taskInput }}
                      />
                   </View>
@@ -60,13 +73,13 @@ const popUp = () => {
                <View style={styles.events}>
                   <TouchableOpacity
                      style={[styles.button, styles.apply]}
-                     onPress={() => setNewTaskModal(!newTaskModal)}
+                     onPress={() => postNewTask()}
                   >
                      <Text style={styles.textStyle}>Save Task</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                      style={[styles.button, styles.discard]}
-                     onPress={() => setNewTaskModal(!newTaskModal)}
+                     onPress={() => console.log(token)}
                   >
                      <Text style={[styles.textStyle, styles.textDiscard]}>
                         Discard task

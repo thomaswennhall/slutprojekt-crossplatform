@@ -11,16 +11,13 @@ import {
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import RNPickerSelect from "react-native-picker-select";
 const statusData = ["Completed", "Not Completed"];
+
 const popUp = ({ editModal, toggleEditModal, str }) => {
    const [taskTitle, editTaskTitle] = useState("");
    const [taskContent, editTaskContent] = useState("");
    const [selectedStatus, setSelectedStatus] = useState();
-
    return (
-      <TouchableOpacity
-         style={styles.centeredView}
-         onPress={() => toggleEditModal(!editModal)}
-      >
+      <TouchableOpacity onPress={() => toggleEditModal(!editModal)}>
          <Modal animationType="slide" transparent={true} visible={editModal}>
             <View style={styles.centeredView}>
                <View style={styles.modalView}>
@@ -89,7 +86,6 @@ const styles = StyleSheet.create({
       padding: 24,
       flex: 1,
       justifyContent: "center",
-      alignItems: "center",
       backgroundColor: "rgba(52, 52, 52, 0.8)",
    },
    modalView: {

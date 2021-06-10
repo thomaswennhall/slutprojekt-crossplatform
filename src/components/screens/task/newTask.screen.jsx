@@ -1,10 +1,13 @@
 import React from "react";
 import { View, Text } from "react-native";
 import NewTask from "../../modal/editTask/newTask";
-const NewTaskScreen = () => {
+const NewTaskScreen = ({ navigation }) => {
+   const sendBackToScreen = () => {
+      navigation.navigate("Category");
+   };
    return (
       <View>
-         <NewTask />
+         <NewTask sendBack={sendBackToScreen} />
       </View>
    );
 };

@@ -8,70 +8,69 @@ import { AuthContext } from "@/store/authContext";
 import { UserContext } from "@/store/userContext";
 
 const DashboardScreen = ({ navigation }) => {
-  const { token, clearToken } = useContext(AuthContext);
+   const { token, clearToken } = useContext(AuthContext);
 
-  const { user, setUserProfile, clearUser } = useContext(UserContext);
+   const { user, setUserProfile, clearUser } = useContext(UserContext);
 
-  useEffect(() => {
-    const setProfile = async () => {
-      await setUserProfile(token);
-    };
+   useEffect(() => {
+      const setProfile = async () => {
+         await setUserProfile(token);
+      };
 
-    setProfile();
+      setProfile();
 
-    return () => {
-      clearUser();
-      clearToken();
-    };
-  }, []);
+      return () => {
+         clearUser();
+         clearToken();
+      };
+   }, []);
 
-  const navigateToCategory = () => {
-    navigation.navigate("Category");
-  };
+   const navigateToCategory = () => {
+      navigation.navigate("Category");
+   };
+   const logoutHandler = () => {
+      navigation.goBack();
+   };
 
-  const logoutHandler = () => {
-    navigation.goBack();
-  };
-
-  return (
-    <View style={styles.container}>
-      <DashboardProfile username={user.username} role={user.role} />
-      <DashboardGrid user={user} toCategory={navigateToCategory} />
-      <Action
-        text={"SIGN OUT"}
-        color={"lightRed"}
-        logoutButton={true}
-        pressHandler={logoutHandler}
-      />
-    </View>
-  );
+   return (
+      <View style={styles.container}>
+         <DashboardProfile username={user.username} role={user.role} />
+         <DashboardGrid user={user} toCategory={navigateToCategory} />
+         <Action
+            text={"SIGN OUT"}
+            color={"lightRed"}
+            logoutButton={true}
+            pressHandler={logoutHandler}
+         />
+      </View>
+   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "space-between",
-    paddingVertical: 20,
-  },
-  overViewHeader: {
-    display: "flex",
-    flexDirection: "row",
-  },
+   container: {
+      flex: 1,
+      backgroundColor: "#fff",
+      justifyContent: "space-between",
+      paddingVertical: 20,
+   },
+   overViewHeader: {
+      display: "flex",
+      flexDirection: "row",
+   },
 
-  overViewGrid: {
-    flexGrow: 0,
-  },
-  overViewText: {
-    fontWeight: "bold",
-    fontSize: 30,
-    color: "#2B2B2B",
-    marginBottom: 15,
-    marginLeft: 25,
-  },
-  icon: {
-    fontSize: 24,
-  },
+   overViewGrid: {
+      flexGrow: 0,
+   },
+   overViewText: {
+      fontWeight: "bold",
+      fontSize: 30,
+      color: "#2B2B2B",
+      marginBottom: 15,
+      marginLeft: 25,
+   },
+   icon: {
+      fontSize: 24,
+   },
 });
 
 export default DashboardScreen;

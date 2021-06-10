@@ -1,29 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, FlatList } from "react-native";
-
-const DATA = [
-   { title: "Do something", date: "2021-05-17" },
-   { title: "Do something", date: "2021-05-17" },
-   { title: "Do something", date: "2021-05-17" },
-   { title: "Do something", date: "2021-05-17" },
-];
+import { UserContext } from "../../store/userContext";
 const ItemTitle = ({ title, date, onPress }) => (
    <TouchableOpacity onPress={onPress} style={style.task}>
       <Text style={style.taskTitle}>{title}</Text>
    </TouchableOpacity>
 );
 const TaskList = ({ toTheTask }) => {
+   const { user } = useContext(UserContext);
    const renderItem = ({ item, index }) => {
       return (
          <View>
-            <ItemTitle title={item.title} onPress={toTheTask} />
+            <ItemTitle title={item.title} onPress={() => toTheTask(item._id)} />
          </View>
       );
    };
    return (
       <View style={style.container}>
          <FlatList
-            data={DATA}
+            data={user.tasks}
             renderItem={renderItem}
             keyExtractor={(item, index) => index.toString()}
          />
