@@ -21,6 +21,11 @@ const UserContextProvider = ({ children }) => {
    const findTaskById = (id) => {
       return user.tasks.find((task) => task._id === id);
    };
+   const editTask = async (token, taskId, taskTitle, taskContent, taskStatus) => {
+      await API.editTask(token, taskId, taskTitle, taskContent, taskStatus);
+      // const findTask = user.tasks.find((task) => task._id === editTheTask);
+      setUserProfile(token);
+   };
    return (
       <UserContext.Provider
          value={{
@@ -31,6 +36,7 @@ const UserContextProvider = ({ children }) => {
             newTask,
             setClientList,
             clients,
+            editTask,
          }}
       >
          {children}

@@ -20,9 +20,15 @@ const Messages = ({ title, content, date }) => (
       <Text style={style.messageFooter}>{date}</Text>
    </View>
 );
-const Task = ({ task }) => {
+const Task = ({ task, toTheTaskList }) => {
    const [editModal, setEditModal] = useState(false);
+   const [taskTitle, setTaskTitle] = useState("");
+   const [taskContent, setTaskContent] = useState("");
+   const [taskId, setTaskId] = useState("");
    const toggleEditModal = () => {
+      setTaskTitle(task.title);
+      setTaskContent(task.info);
+      setTaskId(task._id);
       setEditModal(!editModal);
    };
    const splitDateNTime = (dateNTime) => {
@@ -99,7 +105,14 @@ const Task = ({ task }) => {
                </TouchableOpacity>
             </View>
          </View>
-         <EditTask editModal={editModal} toggleEditModal={toggleEditModal} />
+         <EditTask
+            editModal={editModal}
+            toggleEditModal={toggleEditModal}
+            taskId={taskId}
+            theTaskTitle={taskTitle}
+            theTaskContent={taskContent}
+            backToTheTask={toTheTaskList}
+         />
       </View>
    );
 };

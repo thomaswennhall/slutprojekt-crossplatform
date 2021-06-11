@@ -77,10 +77,7 @@ const popUp = ({ sendBack }) => {
                   >
                      <Text style={styles.textStyle}>Save Task</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity
-                     style={[styles.button, styles.discard]}
-                     onPress={() => console.log(token)}
-                  >
+                  <TouchableOpacity style={[styles.button, styles.discard]}>
                      <Text style={[styles.textStyle, styles.textDiscard]}>
                         Discard task
                      </Text>

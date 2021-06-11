@@ -10,8 +10,8 @@ import Input from "../input/input.component";
 import Button from "../button/button.component";
 import Modal from "../modal/statusMessage/errorModalComponent";
 const Login = ({ loginErrorHandler }) => {
-   const [username, setUsername] = useState("");
-   const [password, setPassword] = useState("");
+   const [username, setUsername] = useState("worker");
+   const [password, setPassword] = useState("worker");
 
    const inputs = [
       {

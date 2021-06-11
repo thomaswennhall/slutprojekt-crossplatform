@@ -54,8 +54,29 @@ export const getClients = async (token) => {
       const res = await API.get("/users?role=client", {
          headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(res.data.data);
+
       return res.data.data;
+   } catch (err) {
+      throw new Error(err.message);
+   }
+};
+
+export const editTask = async (token, taskId, taskTitle, taskContent, taskStatus) => {
+   try {
+      const res = await API.patch(
+         `/tasks/${taskId}`,
+         {
+            title: taskTitle,
+            info: taskContent,
+            completed: taskStatus,
+         },
+         {
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+         }
+      );
+      return res.data;
    } catch (err) {
       throw new Error(err.message);
    }
