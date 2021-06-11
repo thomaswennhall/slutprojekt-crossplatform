@@ -10,7 +10,8 @@ import {
 import IconFontAwesome from "react-native-vector-icons/FontAwesome5";
 import IconIonic from "react-native-vector-icons/Ionicons";
 import EditTask from "../modal/editTask/editTask";
-
+import UploadImage from "./uploadImg/uploadImg";
+import UploadImageComp from "./uploadImg/uploadImg";
 const Messages = ({ title, content, date }) => (
    <View style={style.taskMessage}>
       <Text style={style.messageTtile}>{title}</Text>
@@ -85,6 +86,7 @@ const Task = ({ task, toTheTaskList }) => {
                   <View style={style.photoHeader}>
                      <Text style={style.contentTitle}>Photos</Text>
                   </View>
+                  <UploadImage taskId={task._id} />
                </View>
             </View>
          </ScrollView>

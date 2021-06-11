@@ -26,6 +26,9 @@ const UserContextProvider = ({ children }) => {
       // const findTask = user.tasks.find((task) => task._id === editTheTask);
       setUserProfile(token);
    };
+   const uploadImage = async (token, taskId, data) => {
+      await API.uploadImage(token, taskId, data);
+   };
    return (
       <UserContext.Provider
          value={{
@@ -37,6 +40,7 @@ const UserContextProvider = ({ children }) => {
             setClientList,
             clients,
             editTask,
+            uploadImage,
          }}
       >
          {children}

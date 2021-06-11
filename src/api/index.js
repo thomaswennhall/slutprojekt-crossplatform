@@ -81,3 +81,17 @@ export const editTask = async (token, taskId, taskTitle, taskContent, taskStatus
       throw new Error(err.message);
    }
 };
+
+export const uploadImage = async (token, taskId, data) => {
+   console.log(data);
+   try {
+      await API.post(`/tasks/${taskId}/image`, data, {
+         headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+         },
+      });
+   } catch (err) {
+      throw new Error.message(err);
+   }
+};
