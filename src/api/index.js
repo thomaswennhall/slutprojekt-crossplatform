@@ -83,7 +83,6 @@ export const editTask = async (token, taskId, taskTitle, taskContent, taskStatus
 };
 
 export const uploadImage = async (token, taskId, data) => {
-   console.log(data);
    try {
       await API.post(`/tasks/${taskId}/image`, data, {
          headers: {

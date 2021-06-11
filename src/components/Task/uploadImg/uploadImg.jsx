@@ -29,14 +29,17 @@ const UploadImage = ({ taskId }) => {
    };
    return (
       <View style={styles.container}>
-         {image && (
-            <Image source={{ uri: image.uri }} style={{ width: 80, height: 80 }} />
-         )}
+         <View style={styles.gallery}>
+            {image && <Image source={{ uri: image.uri }} style={styles.img} />}
+            <TouchableOpacity
+               style={[styles.uploadButt, styles.openLibrary]}
+               onPress={pickImage}
+            >
+               <Text style={styles.uploadText}>Open Media Library</Text>
+            </TouchableOpacity>
+         </View>
          <TouchableOpacity style={styles.uploadButt} onPress={uploadTheImage}>
             <Text style={styles.uploadText}>Upload Image</Text>
-         </TouchableOpacity>
-         <TouchableOpacity style={styles.uploadButt} onPress={pickImage}>
-            <Text style={styles.uploadText}>Open Media Library</Text>
          </TouchableOpacity>
       </View>
    );
@@ -54,6 +57,25 @@ const styles = StyleSheet.create({
       color: "#fff",
       fontWeight: "bold",
       textAlign: "center",
+   },
+   gallery: {
+      marginBottom: 8,
+   },
+   img: {
+      width: "100%",
+      height: 120,
+      borderRadius: 8,
+      marginBottom: 8,
+      shadowColor: "#000",
+      shadowOffset: {
+         width: 0,
+         height: 2,
+      },
+      shadowOpacity: 0.9,
+      shadowRadius: 4,
+   },
+   openLibrary: {
+      backgroundColor: "#091832",
    },
 });
 export default UploadImage;
