@@ -1,7 +1,7 @@
 import axios from "axios";
 const PORT = 4200;
 // const API = axios.create({ baseURL: `http://10.0.2.2:${PORT}/api/v1/` });
-const API = axios.create({ baseURL: `http://localhost:${PORT}/api/v1/` });
+const API = axios.create({ baseURL: `http://192.168.50.235:${PORT}/api/v1/` });
 
 export async function signIn(username, password) {
    try {

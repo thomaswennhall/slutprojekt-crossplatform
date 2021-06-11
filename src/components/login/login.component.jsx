@@ -4,6 +4,7 @@ import {
    KeyboardAvoidingView,
    TouchableWithoutFeedback,
    Keyboard,
+   Platform,
 } from "react-native";
 import { AuthContext } from "../../store/authContext";
 import Input from "../input/input.component";
