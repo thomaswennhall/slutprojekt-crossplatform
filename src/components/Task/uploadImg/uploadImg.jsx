@@ -8,9 +8,7 @@ const UploadImage = ({ taskId }) => {
    const { uploadImage } = useContext(UserContext);
    const [image, setImage] = useState(null);
    useEffect(() => {
-      ImagePicker.requestMediaLibraryPermissionsAsync().then((response) => {
-         console.log(response);
-      });
+      ImagePicker.requestMediaLibraryPermissionsAsync().then((response) => {});
    }, []);
    const pickImage = async () => {
       const result = await ImagePicker.launchImageLibraryAsync({});
@@ -20,8 +18,8 @@ const UploadImage = ({ taskId }) => {
    };
    const uploadTheImage = async () => {
       const formData = new FormData();
-      formData.append("image", {
-         name: "imageUpload",
+      formData.append("imageUpload", {
+         name: "red.png",
          type: "image/*",
          uri: Platform.OS === "android" ? image.uri : image.uri.replace("file://", ""),
       });
@@ -38,9 +36,11 @@ const UploadImage = ({ taskId }) => {
                <Text style={styles.uploadText}>Open Media Library</Text>
             </TouchableOpacity>
          </View>
-         <TouchableOpacity style={styles.uploadButt} onPress={uploadTheImage}>
-            <Text style={styles.uploadText}>Upload Image</Text>
-         </TouchableOpacity>
+         {image && (
+            <TouchableOpacity style={styles.uploadButt} onPress={uploadTheImage}>
+               <Text style={styles.uploadText}>Upload Image</Text>
+            </TouchableOpacity>
+         )}
       </View>
    );
 };

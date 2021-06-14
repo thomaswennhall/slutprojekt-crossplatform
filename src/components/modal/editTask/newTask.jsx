@@ -12,8 +12,6 @@ import {
    Platform,
    Keyboard,
 } from "react-native";
-import * as API from "../../../api/index";
-import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import RNPickerSelect from "react-native-picker-select";
 import { AuthContext } from "../../../store/authContext";
 import { UserContext } from "../../../store/userContext";

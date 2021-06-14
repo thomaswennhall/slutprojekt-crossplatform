@@ -1,8 +1,8 @@
 import axios from "axios";
 const PORT = 4200;
 // const API = axios.create({ baseURL: `http://10.0.2.2:${PORT}/api/v1/` });
-const API = axios.create({ baseURL: `http://192.168.50.235:${PORT}/api/v1/` });
-
+const API = axios.create({ baseURL: `http://localhost:${PORT}/api/v1/` });
+import img from "../../assets/img/red-cicrle.png";
 export async function signIn(username, password) {
    try {
       const response = await API.post("/auth", {
@@ -83,6 +83,7 @@ export const editTask = async (token, taskId, taskTitle, taskContent, taskStatus
 };
 
 export const uploadImage = async (token, taskId, data) => {
+   console.log(data);
    try {
       await API.post(`/tasks/${taskId}/image`, data, {
          headers: {
@@ -91,6 +92,6 @@ export const uploadImage = async (token, taskId, data) => {
          },
       });
    } catch (err) {
-      throw new Error.message(err);
+      console.log(err);
    }
 };
