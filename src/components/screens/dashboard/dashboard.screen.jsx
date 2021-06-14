@@ -28,6 +28,9 @@ const DashboardScreen = ({ navigation }) => {
    const navigateToCategory = () => {
       navigation.navigate("Category");
    };
+   const navigateToProfile = () => {
+      navigation.navigate("Profile");
+   };
    const logoutHandler = () => {
       navigation.goBack();
    };
@@ -35,7 +38,11 @@ const DashboardScreen = ({ navigation }) => {
    return (
       <View style={styles.container}>
          <DashboardProfile username={user.username} role={user.role} />
-         <DashboardGrid user={user} toCategory={navigateToCategory} />
+         <DashboardGrid
+            user={user}
+            toCategory={navigateToCategory}
+            toProfile={navigateToProfile}
+         />
          <Action
             text={"SIGN OUT"}
             color={"lightRed"}

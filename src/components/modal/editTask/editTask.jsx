@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
    Modal,
    StyleSheet,
@@ -10,12 +10,31 @@ import {
 } from "react-native";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import RNPickerSelect from "react-native-picker-select";
+import { UserContext } from "../../../store/userContext";
+import { AuthContext } from "../../../store/authContext";
 const statusData = ["Completed", "Not Completed"];
 
-const popUp = ({ editModal, toggleEditModal, str }) => {
-   const [taskTitle, editTaskTitle] = useState("");
-   const [taskContent, editTaskContent] = useState("");
-   const [selectedStatus, setSelectedStatus] = useState();
+const popUp = ({
+   editModal,
+   toggleEditModal,
+   taskId,
+   theTaskTitle,
+   theTaskContent,
+   backToTheTask,
+}) => {
+   const { editTask } = useContext(UserContext);
+   const { token } = useContext(AuthContext);
+   const [taskTitle, editTaskTitle] = useState(theTaskTitle);
+   const [taskContent, editTaskContent] = useState(theTaskContent);
+   const [taskStatus, setSelectedStatus] = useState(false);
+   useEffect(() => {
+      editTaskContent(theTaskContent);
+      editTaskTitle(theTaskTitle);
+   }, [theTaskContent, theTaskTitle]);
+   const editTheTask = async () => {
+      await editTask(token, taskId, taskTitle, taskContent, taskStatus);
+      backToTheTask();
+   };
    return (
       <TouchableOpacity onPress={() => toggleEditModal(!editModal)}>
          <Modal animationType="slide" transparent={true} visible={editModal}>
@@ -29,6 +48,7 @@ const popUp = ({ editModal, toggleEditModal, str }) => {
                      <TextInput
                         onChangeText={editTaskTitle}
                         value={taskTitle}
+                        defaultValue={theTaskTitle}
                         style={styles.taskInput}
                      />
                   </View>
@@ -39,6 +59,7 @@ const popUp = ({ editModal, toggleEditModal, str }) => {
                         numberOfLines={5}
                         onChangeText={editTaskContent}
                         value={taskContent}
+                        defaultValue={theTaskContent}
                         style={styles.taskTextArea}
                      />
                   </View>
@@ -51,8 +72,8 @@ const popUp = ({ editModal, toggleEditModal, str }) => {
                               setSelectedStatus(value);
                            }}
                            items={[
-                              { label: "Completed", value: "Completed" },
-                              { label: "Not completed", value: "Not completed" },
+                              { label: "Completed", value: true },
+                              { label: "Not completed", value: false },
                            ]}
                            style={{ ...styles.taskInput }}
                         />
@@ -61,7 +82,7 @@ const popUp = ({ editModal, toggleEditModal, str }) => {
                   <View style={styles.events}>
                      <TouchableOpacity
                         style={[styles.button, styles.apply]}
-                        onPress={() => toggleEditModal(!editModal)}
+                        onPress={() => editTheTask()}
                      >
                         <Text style={styles.textStyle}>Apply change</Text>
                      </TouchableOpacity>

@@ -12,9 +12,7 @@ const landingScreen = ({ navigation }) => {
    useEffect(() => {
       if (token) {
          navigation.navigate("Dashboard");
-         return console.log(token, "token");
       }
-      return console.log(token, "no-token?");
    }, [token]);
    const toggleLoginError = () => {
       setLoginError(!loginError);

@@ -7,9 +7,11 @@ import {
    View,
    Image,
    TouchableOpacity,
+   KeyboardAvoidingView,
+   TouchableWithoutFeedback,
+   Platform,
+   Keyboard,
 } from "react-native";
-import * as API from "../../../api/index";
-import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import RNPickerSelect from "react-native-picker-select";
 import { AuthContext } from "../../../store/authContext";
 import { UserContext } from "../../../store/userContext";
@@ -30,65 +32,69 @@ const popUp = ({ sendBack }) => {
       initClients();
    }, []);
    return (
-      <View style={styles.centeredView}>
-         <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-               <View style={styles.editHeader}>
-                  <Text style={styles.editTitle}>{newTaskTitle}</Text>
-               </View>
-               <View style={styles.editInputs}>
-                  <Text style={styles.label}>Title</Text>
-                  <TextInput
-                     onChangeText={addTaskTitle}
-                     value={newTaskTitle}
-                     style={styles.taskInput}
-                  />
-               </View>
-               <View style={styles.editInputs}>
-                  <Text style={styles.label}>Content</Text>
-                  <TextInput
-                     multiline={true}
-                     numberOfLines={5}
-                     onChangeText={addTaskContent}
-                     value={newTaskContent}
-                     style={styles.taskTextArea}
-                  />
-               </View>
-               <View style={styles.editInputs}>
-                  <Text style={styles.label}>Status</Text>
-                  <View style={[styles.taskInput, styles.dropdown]}>
-                     <RNPickerSelect
-                        placeholder={{ label: "--- Option ---" }}
-                        onValueChange={(value) => {
-                           setClientId(value);
-                        }}
-                        items={clients.map((client) => ({
-                           label: client.username,
-                           value: client._id,
-                        }))}
-                        style={{ ...styles.taskInput }}
-                     />
+      <KeyboardAvoidingView
+         behavior={Platform.OS === "ios" ? "padding" : "height"}
+         style={{ width: "100%", padding: 16 }}
+      >
+         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.centeredView}>
+               <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                     <View style={styles.editHeader}>
+                        <Text style={styles.editTitle}>{newTaskTitle}</Text>
+                     </View>
+                     <View style={styles.editInputs}>
+                        <Text style={styles.label}>Title</Text>
+                        <TextInput
+                           onChangeText={addTaskTitle}
+                           value={newTaskTitle}
+                           style={styles.taskInput}
+                        />
+                     </View>
+                     <View style={styles.editInputs}>
+                        <Text style={styles.label}>Content</Text>
+                        <TextInput
+                           multiline={true}
+                           numberOfLines={5}
+                           onChangeText={addTaskContent}
+                           value={newTaskContent}
+                           style={styles.taskTextArea}
+                        />
+                     </View>
+                     <View style={styles.editInputs}>
+                        <Text style={styles.label}>Client</Text>
+                        <View style={[styles.taskInput, styles.dropdown]}>
+                           <RNPickerSelect
+                              placeholder={{ label: "--- Option ---" }}
+                              onValueChange={(value) => {
+                                 setClientId(value);
+                              }}
+                              items={clients.map((client) => ({
+                                 label: client.username,
+                                 value: client._id,
+                              }))}
+                              style={{ ...styles.taskInput }}
+                           />
+                        </View>
+                     </View>
+                     <View style={styles.events}>
+                        <TouchableOpacity
+                           style={[styles.button, styles.apply]}
+                           onPress={() => postNewTask()}
+                        >
+                           <Text style={styles.textStyle}>Save Task</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.button, styles.discard]}>
+                           <Text style={[styles.textStyle, styles.textDiscard]}>
+                              Discard task
+                           </Text>
+                        </TouchableOpacity>
+                     </View>
                   </View>
                </View>
-               <View style={styles.events}>
-                  <TouchableOpacity
-                     style={[styles.button, styles.apply]}
-                     onPress={() => postNewTask()}
-                  >
-                     <Text style={styles.textStyle}>Save Task</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                     style={[styles.button, styles.discard]}
-                     onPress={() => console.log(token)}
-                  >
-                     <Text style={[styles.textStyle, styles.textDiscard]}>
-                        Discard task
-                     </Text>
-                  </TouchableOpacity>
-               </View>
             </View>
-         </View>
-      </View>
+         </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
    );
 };
 

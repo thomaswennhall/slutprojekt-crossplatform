@@ -10,7 +10,8 @@ import {
 import IconFontAwesome from "react-native-vector-icons/FontAwesome5";
 import IconIonic from "react-native-vector-icons/Ionicons";
 import EditTask from "../modal/editTask/editTask";
-
+import UploadImage from "./uploadImg/uploadImg";
+import UploadImageComp from "./uploadImg/uploadImg";
 const Messages = ({ title, content, date }) => (
    <View style={style.taskMessage}>
       <Text style={style.messageTtile}>{title}</Text>
@@ -20,9 +21,15 @@ const Messages = ({ title, content, date }) => (
       <Text style={style.messageFooter}>{date}</Text>
    </View>
 );
-const Task = ({ task }) => {
+const Task = ({ task, toTheTaskList }) => {
    const [editModal, setEditModal] = useState(false);
+   const [taskTitle, setTaskTitle] = useState("");
+   const [taskContent, setTaskContent] = useState("");
+   const [taskId, setTaskId] = useState("");
    const toggleEditModal = () => {
+      setTaskTitle(task.title);
+      setTaskContent(task.info);
+      setTaskId(task._id);
       setEditModal(!editModal);
    };
    const splitDateNTime = (dateNTime) => {
@@ -79,6 +86,7 @@ const Task = ({ task }) => {
                   <View style={style.photoHeader}>
                      <Text style={style.contentTitle}>Photos</Text>
                   </View>
+                  <UploadImage taskId={task._id} />
                </View>
             </View>
          </ScrollView>
@@ -99,7 +107,14 @@ const Task = ({ task }) => {
                </TouchableOpacity>
             </View>
          </View>
-         <EditTask editModal={editModal} toggleEditModal={toggleEditModal} />
+         <EditTask
+            editModal={editModal}
+            toggleEditModal={toggleEditModal}
+            taskId={taskId}
+            theTaskTitle={taskTitle}
+            theTaskContent={taskContent}
+            backToTheTask={toTheTaskList}
+         />
       </View>
    );
 };

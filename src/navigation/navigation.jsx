@@ -7,6 +7,8 @@ import TaskCategory from "../components/screens/category/Category.screen";
 import TaskList from "../components/screens/category/TaskList.screen";
 import Task from "../components/screens/task/task.screen";
 import NewTask from "../components/screens/task/newTask.screen";
+import Profile from "../components/screens/profile/profile.screen";
+import EditProfile from "../components/screens/profile/editProfile.screen";
 export const ScreenName = {
    LANDING: "Landing",
    DASHBOARD: "Dashboard",
@@ -16,6 +18,8 @@ export const ScreenName = {
    TASKLIST: "Task list",
    TASK: "TASK",
    NEWTASK: "New task",
+   PROFILE: "Profile",
+   EDITPROFILE: "Edit profile",
 };
 
 const Stack = createStackNavigator();
@@ -23,7 +27,8 @@ const Navigation = () => (
    <NavigationContainer>
       <Stack.Navigator>
          <Stack.Screen name={ScreenName.LANDING} component={Landing} />
-         {/* <Stack.Screen name={ScreenName.PROFILE} component={Profile} /> */}
+         <Stack.Screen name={ScreenName.PROFILE} component={Profile} />
+         <Stack.Screen name={ScreenName.EDITPROFILE} component={EditProfile} />
          <Stack.Screen name={ScreenName.DASHBOARD} component={Dashboard} />
          <Stack.Screen name={ScreenName.CATEGORY} component={TaskCategory} />
          <Stack.Screen name={ScreenName.TASKLIST} component={TaskList} />
