@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
-import DashboardProfile from "../dashboard/profile/profile.component";
-
+import { UserContext } from "../../store/userContext";
 const MyProfile = ({ toUpdateProfile }) => {
+   const { user } = useContext(UserContext);
    return (
       <View style={styles.container}>
          <Text style={styles.profileTitle}>Profile</Text>
