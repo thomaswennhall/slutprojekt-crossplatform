@@ -9,7 +9,7 @@ const MessageActionPanel = () => {
   return (
     <ActionPanelWrapper
       theme={{
-        width: Dimensions.get("window").width / 3,
+        width: Dimensions.get("window").width / 3 + "px",
         justifyContent: "space-around",
       }}
     >

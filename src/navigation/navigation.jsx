@@ -23,12 +23,12 @@ const Stack = createStackNavigator();
 const Navigation = () => (
   <NavigationContainer>
     <Stack.Navigator>
+      <Stack.Screen name={ScreenName.MESSAGES} component={TaskMessages} />
       <Stack.Screen name={ScreenName.PROFILE} component={Profile} />
       <Stack.Screen name={ScreenName.TEST} component={Test} />
       <Stack.Screen name={ScreenName.DASHBOARD} component={Dashboard} />
       <Stack.Screen name={ScreenName.CATEGORY} component={TaskCategory} />
       <Stack.Screen name={ScreenName.TASKLIST} component={TaskList} />
-      <Stack.Screen name={ScreenName.MESSAGES} component={TaskMessages} />
       {/* Screens Goes here */}
     </Stack.Navigator>
   </NavigationContainer>
