@@ -1,30 +1,28 @@
-import React from 'react' 
-import {SafeAreaView, StyleSheet} from 'react-native' 
-import UpdateProfile from '@/components/updateProfile/update-profile.component'
-import DashboardProfile from '@/components/dashboard/profile/profile.component'
-
+import React from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
+import UpdateProfile from "@/components/updateProfile/update-profile.component";
+import DashboardProfile from "@/components/dashboard/profile/profile.component";
+import MyProfile from "../profile/profile.component";
 const ProfileScreen = () => {
-  const user = {
-    username: 'thomas',
-    role: 'admin'
-  }
+   const user = {
+      username: "thomas",
+      role: "admin",
+   };
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <DashboardProfile {...user} />
-      <UpdateProfile />
-    </SafeAreaView>
-  )
-}
+   return (
+      <SafeAreaView style={styles.container}>
+         <DashboardProfile {...user} />
+         <MyProfile />
+         {/* <UpdateProfile /> */}
+      </SafeAreaView>
+   );
+};
 
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'column', 
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    height: '100%'
-  }
-})
+   container: {
+      flex: 1,
+      backgroundColor: "#fff",
+   },
+});
 
-export default ProfileScreen
+export default ProfileScreen;

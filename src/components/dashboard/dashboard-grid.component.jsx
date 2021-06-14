@@ -5,7 +5,7 @@ import { UserContext } from "@/store/userContext";
 import { StyleSheet, View, Text } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-const DashboardGrid = ({ toCategory }) => {
+const DashboardGrid = ({ toCategory, toProfile }) => {
    const { user } = useContext(UserContext);
    const grid = [
       {
@@ -31,7 +31,7 @@ const DashboardGrid = ({ toCategory }) => {
             button: {
                title: "View",
                onPressHandler: () => {
-                  console.log("Profile on press");
+                  toProfile();
                },
             },
          },
