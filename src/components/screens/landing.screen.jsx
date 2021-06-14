@@ -1,16 +1,30 @@
-import React from "react";
-import { SafeAreaView, View, Text, Image, StyleSheet } from "react-native";
+import React, { useEffect, useContext, useState } from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
 import Logo from "@/components/logo/logo.component";
-
+import { AuthContext } from "@/store/authContext";
 import Login from "@/components/login/login.component";
+import PopUp from "../modal/statusMessage/errorModalComponent";
+
 const landingScreen = ({ navigation }) => {
-   const toDashboard = () => {
-      navigation.navigate("Dashboard");
+   const { token } = useContext(AuthContext);
+   const [loginError, setLoginError] = useState(false);
+
+   useEffect(() => {
+      if (token) {
+         navigation.navigate("Dashboard");
+      }
+   }, [token]);
+   const toggleLoginError = () => {
+      setLoginError(!loginError);
    };
+
    return (
       <SafeAreaView style={styles.container}>
          <Logo />
-         <Login toDashboard={toDashboard} />
+         <Login loginErrorHandler={toggleLoginError} />
+         {loginError && (
+            <PopUp modalVisible={loginError} toggleModalPop={toggleLoginError} />
+         )}
       </SafeAreaView>
    );
 };

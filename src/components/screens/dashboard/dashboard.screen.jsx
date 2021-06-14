@@ -1,84 +1,48 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import { FlatGrid } from "react-native-super-grid";
-import DashboardItem, { StylingOption } from "@/components/dashboard/dashboard-item";
 import DashboardProfile from "@/components/dashboard/profile/profile.component";
 import Action from "@/components/button/button.component";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import DashboardGrid from "@/components/dashboard/dashboard-grid.component";
+
+import { AuthContext } from "@/store/authContext";
+import { UserContext } from "@/store/userContext";
+
 const DashboardScreen = ({ navigation }) => {
-   const [user, setUser] = useState({
-      username: "Test-User",
-      role: "worker",
-      image: "https://via.placeholder.com/150",
-      tasks: [{}, {}, {}],
-   });
+   const { token, clearToken } = useContext(AuthContext);
 
-   const logoutHandler = () => {
-      console.log("logging out");
+   const { user, setUserProfile, clearUser } = useContext(UserContext);
+
+   useEffect(() => {
+      const setProfile = async () => {
+         await setUserProfile(token);
+      };
+
+      setProfile();
+
+      return () => {
+         clearUser();
+         clearToken();
+      };
+   }, []);
+
+   const navigateToCategory = () => {
+      navigation.navigate("Category");
    };
-
-   const grid = [
-      {
-         data: {
-            button: {
-               title: user.tasks.length,
-               onPressHandler: () => {
-                  navigation.navigate("Category");
-               },
-            },
-         },
-         title: "Tasks",
-         icon: <Icon name="file-document-outline" style={styles.icon} />,
-         stylingOption: {
-            background: StylingOption.BACKGROUND_BLUE,
-         },
-      },
-      {
-         title: "Profile",
-         icon: <Icon name="account-circle" style={styles.icon} />,
-         data: {
-            button: {
-               title: "View",
-               onPressHandler: () => {
-                  console.log("Profile on press");
-               },
-            },
-         },
-         stylingOption: {
-            background: StylingOption.BACKGROUND_YELLOW,
-            color: StylingOption.COLOR_BLACK,
-         },
-      },
-      {
-         title: "Messages",
-         icon: <Icon name="email" style={styles.icon} />,
-         stylingOption: {
-            background: StylingOption.BACKGROUND_RED,
-         },
-         data: {
-            button: {
-               title: "New",
-               onPressHandler: () => {
-                  navigation.navigate("Task list");
-               },
-            },
-         },
-      },
-   ];
+   const navigateToProfile = () => {
+      navigation.navigate("Profile");
+   };
+   const logoutHandler = () => {
+      navigation.goBack();
+   };
 
    return (
       <View style={styles.container}>
-         <DashboardProfile {...user} />
-         <View>
-            <Text style={styles.overViewText}>Overview</Text>
-            <FlatGrid
-               itemDimension={120}
-               data={grid}
-               spacing={15}
-               renderItem={({ item }) => <DashboardItem {...item} />}
-               style={styles.overViewGrid}
-            />
-         </View>
+         <DashboardProfile username={user.username} role={user.role} />
+         <DashboardGrid
+            user={user}
+            toCategory={navigateToCategory}
+            toProfile={navigateToProfile}
+         />
          <Action
             text={"SIGN OUT"}
             color={"lightRed"}
@@ -94,6 +58,7 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: "#fff",
       justifyContent: "space-between",
+      paddingVertical: 20,
    },
    overViewHeader: {
       display: "flex",

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Button } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
-const CategoryListScreen = ({ notCompletedHandler }) => {
+const CategoryListScreen = ({ notCompletedHandler, addNewTask }) => {
    // const arrowRight = <Icon name="arrow-right" size={30} />;
    return (
       <View style={style.container}>
@@ -13,7 +13,7 @@ const CategoryListScreen = ({ notCompletedHandler }) => {
             <Text style={style.categoryTitle}>Completed</Text>
             <Icon name="arrow-right" style={style.icon} />
          </TouchableOpacity>
-         <TouchableOpacity onPress={notCompletedHandler} style={style.list}>
+         <TouchableOpacity onPress={addNewTask} style={style.list}>
             <Text style={style.categoryTitle}>New task</Text>
             <Icon name="arrow-right" style={style.icon} />
          </TouchableOpacity>
