@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import DashboardProfile from "../dashboard/profile/profile.component";
 
-const MyProfile = () => {
+const MyProfile = ({ toUpdateProfile }) => {
    return (
       <View style={styles.container}>
          <Text style={styles.profileTitle}>Profile</Text>
@@ -29,7 +29,7 @@ const MyProfile = () => {
             </View>
 
             <View style={styles.actions}>
-               <TouchableOpacity style={styles.editButt}>
+               <TouchableOpacity style={styles.editButt} onPress={toUpdateProfile}>
                   <Text
                      style={{
                         textAlign: "center",
