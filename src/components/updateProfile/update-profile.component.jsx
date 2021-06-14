@@ -8,6 +8,7 @@ import {
    KeyboardAvoidingView,
    TouchableWithoutFeedback,
    Keyboard,
+   ScrollView,
 } from "react-native";
 import Input from "@/components/input/input.component";
 import Button from "@/components/button/button.component";
@@ -66,31 +67,54 @@ const UpdateProfile = () => {
                      </View>
                   </View>
 
-                  <View style={styles.actions}>
-                     <TouchableOpacity style={[styles.editButt, styles.butt]}>
-                        <Text
-                           style={{
-                              textAlign: "center",
-                              color: "#fff",
-                              fontSize: 12,
-                              fontWeight: "bold",
-                           }}
-                        >
-                           Save change
-                        </Text>
-                     </TouchableOpacity>
-                     <TouchableOpacity style={[styles.discardButt, styles.butt]}>
-                        <Text
-                           style={{
-                              textAlign: "center",
-                              color: "#fff",
-                              fontSize: 12,
-                              fontWeight: "bold",
-                           }}
-                        >
-                           Discard change
-                        </Text>
-                     </TouchableOpacity>
+                  <View style={styles.actions}></View>
+               </View>
+               <View
+                  style={{
+                     borderBottomColor: "#BFBFBF",
+                     borderBottomWidth: 0.25,
+                     marginTop: 8,
+                  }}
+               />
+               <View style={styles.content}>
+                  <Text style={styles.profileTitle}>Account</Text>
+                  <View style={styles.content}>
+                     <View style={[styles.row1, styles.row]}>
+                        <View style={[styles.firstName, styles.nameColumn]}>
+                           <Text style={styles.label}>Username</Text>
+                           <TextInput style={styles.input} />
+                        </View>
+                        <View style={[styles.lastName, styles.nameColumn]}>
+                           <Text style={styles.label}>Password</Text>
+                           <TextInput style={styles.input} />
+                        </View>
+                     </View>
+                     <View style={styles.actions}>
+                        <TouchableOpacity style={[styles.editButt, styles.butt]}>
+                           <Text
+                              style={{
+                                 textAlign: "center",
+                                 color: "#fff",
+                                 fontSize: 12,
+                                 fontWeight: "bold",
+                              }}
+                           >
+                              Save change
+                           </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={[styles.discardButt, styles.butt]}>
+                           <Text
+                              style={{
+                                 textAlign: "center",
+                                 color: "#fff",
+                                 fontSize: 12,
+                                 fontWeight: "bold",
+                              }}
+                           >
+                              Discard change
+                           </Text>
+                        </TouchableOpacity>
+                     </View>
                   </View>
                </View>
             </View>
@@ -142,7 +166,7 @@ const styles = StyleSheet.create({
       marginVertical: 4,
    },
    editButt: {
-      backgroundColor: "#091832",
+      backgroundColor: "#3A32CC",
    },
    discardButt: {
       backgroundColor: "#EB6464",
