@@ -10,8 +10,6 @@ const styles = StyleSheet.create({
    profile: {
       display: "flex",
       flexDirection: "row",
-      maxWidth: 250,
-      alignItems: "center",
       padding: 32,
    },
    profileRole: {

@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import DashboardProfile from "@/components/dashboard/profile/profile.component";
 import MyProfile from "../../profile/profile.component";
+import { UserContext } from "../../../store/userContext";
 const ProfileScreen = ({ navigation }) => {
-   const user = {
-      username: "thomas",
-      role: "admin",
-   };
+   const { user } = useContext(UserContext);
    const toUpdateProfile = () => {
       navigation.navigate("Edit profile");
    };
