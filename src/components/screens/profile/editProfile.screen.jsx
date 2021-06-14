@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import DashboardProfile from "../../dashboard/profile/profile.component";
 import EditProfile from "../../updateProfile/update-profile.component";
+import { UserContext } from "../../../store/userContext";
 const ProfileScreen = ({ navigation }) => {
-   const user = {
-      username: "thomas",
-      role: "admin",
+   const { user } = useContext(UserContext);
+   const backToProfile = () => {
+      navigation.navigate("Profile");
    };
    return (
       <SafeAreaView style={styles.container}>
          <DashboardProfile {...user} />
-         <EditProfile />
+         <EditProfile userInfo={user} backToProfile={backToProfile} />
       </SafeAreaView>
    );
 };

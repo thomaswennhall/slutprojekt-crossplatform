@@ -9,6 +9,10 @@ const UserContextProvider = ({ children }) => {
       const res = await API.getUserProfile(token);
       setUser(res);
    };
+   const updateUserProfile = async (token, username, password, firstName, lastName) => {
+      await API.editUserProfile(token, username, password, firstName, lastName);
+      setUserProfile(token);
+   };
    const newTask = async (token, title, content, clientId) => {
       const newTask = await API.newTask(token, title, content, clientId);
       setUser({ ...user, tasks: [...user.tasks, newTask] });
@@ -41,6 +45,7 @@ const UserContextProvider = ({ children }) => {
             clients,
             editTask,
             uploadImage,
+            updateUserProfile,
          }}
       >
          {children}
