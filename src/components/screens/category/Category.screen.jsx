@@ -5,9 +5,16 @@ const CategoryScreen = ({ navigation }) => {
    const toTaskList = () => {
       navigation.navigate("Task list");
    };
+   const toAddNewTask = () => {
+      navigation.navigate("New task");
+   };
    return (
       <View style={style.categoryContainer}>
-         <CategoryList notCompletedHandler={toTaskList} style={style.categoryList} />
+         <CategoryList
+            notCompletedHandler={toTaskList}
+            addNewTask={toAddNewTask}
+            style={style.categoryList}
+         />
       </View>
    );
 };

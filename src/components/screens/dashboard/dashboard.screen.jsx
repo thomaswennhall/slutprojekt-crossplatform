@@ -1,118 +1,88 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import { FlatGrid } from "react-native-super-grid";
-import DashboardItem, { StylingOption } from "@/components/dashboard/dashboard-item";
 import DashboardProfile from "@/components/dashboard/profile/profile.component";
 import Action from "@/components/button/button.component";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import DashboardGrid from "@/components/dashboard/dashboard-grid.component";
+
+import { AuthContext } from "@/store/authContext";
+import { UserContext } from "@/store/userContext";
+
 const DashboardScreen = ({ navigation }) => {
-   const [user, setUser] = useState({
-      username: "Test-User",
-      role: "worker",
-      image: "https://via.placeholder.com/150",
-      tasks: [{}, {}, {}],
-   });
+  const { token, clearToken } = useContext(AuthContext);
 
-   const logoutHandler = () => {
-      console.log("logging out");
-   };
+  const { user, setUserProfile, clearUser } = useContext(UserContext);
 
-   const grid = [
-      {
-         data: {
-            button: {
-               title: user.tasks.length,
-               onPressHandler: () => {
-                  navigation.navigate("Category");
-               },
-            },
-         },
-         title: "Tasks",
-         icon: <Icon name="file-document-outline" style={styles.icon} />,
-         stylingOption: {
-            background: StylingOption.BACKGROUND_BLUE,
-         },
-      },
-      {
-         title: "Profile",
-         icon: <Icon name="account-circle" style={styles.icon} />,
-         data: {
-            button: {
-               title: "View",
-               onPressHandler: () => {
-                  console.log("Profile on press");
-               },
-            },
-         },
-         stylingOption: {
-            background: StylingOption.BACKGROUND_YELLOW,
-            color: StylingOption.COLOR_BLACK,
-         },
-      },
-      {
-         title: "Messages",
-         icon: <Icon name="email" style={styles.icon} />,
-         stylingOption: {
-            background: StylingOption.BACKGROUND_RED,
-         },
-         data: {
-            button: {
-               title: "New",
-               onPressHandler: () => {
-                  navigation.navigate("Task list");
-               },
-            },
-         },
-      },
-   ];
+  useEffect(() => {
+    const setProfile = async () => {
+      await setUserProfile(token);
+    };
 
-   return (
-      <View style={styles.container}>
-         <DashboardProfile {...user} />
-         <View>
-            <Text style={styles.overViewText}>Overview</Text>
-            <FlatGrid
-               itemDimension={120}
-               data={grid}
-               spacing={15}
-               renderItem={({ item }) => <DashboardItem {...item} />}
-               style={styles.overViewGrid}
-            />
-         </View>
-         <Action
-            text={"SIGN OUT"}
-            color={"lightRed"}
-            logoutButton={true}
-            pressHandler={logoutHandler}
-         />
-      </View>
-   );
+    setProfile();
+
+    return () => {
+      clearUser();
+      clearToken();
+    };
+  }, []);
+
+  const navigateToCategory = () => {
+    navigation.navigate("Category");
+  };
+  const navigateToProfile = () => {
+    navigation.navigate("Profile");
+  };
+  const logoutHandler = () => {
+    navigation.goBack();
+  };
+
+  const navigateToMessages = () => {
+    navigation.navigate("Messages");
+  };
+
+  return (
+    <View style={styles.container}>
+      <DashboardProfile username={user.username} role={user.role} />
+      <DashboardGrid
+        user={user}
+        toCategory={navigateToCategory}
+        toProfile={navigateToProfile}
+        toMessages={navigateToMessages}
+      />
+      <Action
+        text={"SIGN OUT"}
+        color={"lightRed"}
+        logoutButton={true}
+        pressHandler={logoutHandler}
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-   container: {
-      flex: 1,
-      backgroundColor: "#fff",
-      justifyContent: "space-between",
-   },
-   overViewHeader: {
-      display: "flex",
-      flexDirection: "row",
-   },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "space-between",
+    paddingVertical: 20,
+  },
+  overViewHeader: {
+    display: "flex",
+    flexDirection: "row",
+  },
 
-   overViewGrid: {
-      flexGrow: 0,
-   },
-   overViewText: {
-      fontWeight: "bold",
-      fontSize: 30,
-      color: "#2B2B2B",
-      marginBottom: 15,
-      marginLeft: 25,
-   },
-   icon: {
-      fontSize: 24,
-   },
+  overViewGrid: {
+    flexGrow: 0,
+  },
+  overViewText: {
+    fontWeight: "bold",
+    fontSize: 30,
+    color: "#2B2B2B",
+    marginBottom: 15,
+    marginLeft: 25,
+  },
+  icon: {
+    fontSize: 24,
+  },
 });
 
 export default DashboardScreen;
