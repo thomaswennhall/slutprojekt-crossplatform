@@ -19,9 +19,9 @@ const DashboardScreen = ({ navigation }) => {
 
       setProfile();
 
-      return () => {
+      return async () => {
          clearUser();
-         clearToken();
+         await clearToken();
       };
    }, []);
 
