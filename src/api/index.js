@@ -2,7 +2,6 @@ import axios from "axios";
 const PORT = 4200;
 // const API = axios.create({ baseURL: `http://10.0.2.2:${PORT}/api/v1/` });
 const API = axios.create({ baseURL: `http://localhost:${PORT}/api/v1/` });
-import img from "../../assets/img/red-cicrle.png";
 export async function signIn(username, password) {
    try {
       const response = await API.post("/auth", {
@@ -23,6 +22,24 @@ export const getUserProfile = async (token) => {
          },
       });
       return response.data.data;
+   } catch (err) {
+      console.log(err);
+   }
+};
+
+export const editUserProfile = async (token, username, password, firstName, lastName) => {
+   try {
+      const res = await API.patch(
+         "/me",
+         {
+            username: username,
+         },
+         {
+            headers: {
+               Authorization: `Bearer ${token}`,
+            },
+         }
+      );
    } catch (err) {
       console.log(err);
    }
@@ -83,7 +100,6 @@ export const editTask = async (token, taskId, taskTitle, taskContent, taskStatus
 };
 
 export const uploadImage = async (token, taskId, data) => {
-   console.log(data);
    try {
       await API.post(`/tasks/${taskId}/image`, data, {
          headers: {
@@ -93,5 +109,16 @@ export const uploadImage = async (token, taskId, data) => {
       });
    } catch (err) {
       console.log(err);
+   }
+};
+
+export const getMessages = async (token, taskId) => {
+   try {
+      const { data } = await API.get(`/tasks/${taskId}/messages`, {
+         headers: { Authorization: `Bearer ${token}` },
+      });
+      return data;
+   } catch (err) {
+      console.log(err, "error");
    }
 };

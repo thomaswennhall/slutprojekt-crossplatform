@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
    View,
    Text,
@@ -12,30 +12,18 @@ import {
 } from "react-native";
 import Input from "@/components/input/input.component";
 import Button from "@/components/button/button.component";
-
-const UpdateProfile = () => {
-   const [username, setUsername] = useState("");
+import { AuthContext } from "../../store/authContext";
+import { UserContext } from "../../store/userContext";
+const UpdateProfile = ({ userInfo, backToProfile }) => {
+   const { updateUserProfile } = useContext(UserContext);
+   const { token } = useContext(AuthContext);
+   const [username, setUsername] = useState(userInfo.username);
    const [password, setPassword] = useState("");
 
-   const inputs = [
-      {
-         label: "Username",
-         //placeholder: 'username...',
-         inputHandler: (input) => {
-            setUsername(input);
-         },
-      },
-      {
-         label: "Password",
-         //placeholder: 'password...',
-         secureInput: true,
-         inputHandler: (input) => {
-            setPassword(input);
-         },
-      },
-   ];
-
-   const saveChanges = () => {};
+   const saveChanges = async () => {
+      await updateUserProfile(token, username);
+      backToProfile();
+   };
 
    return (
       <KeyboardAvoidingView
@@ -82,11 +70,20 @@ const UpdateProfile = () => {
                      <View style={[styles.row1, styles.row]}>
                         <View style={[styles.firstName, styles.nameColumn]}>
                            <Text style={styles.label}>Username</Text>
-                           <TextInput style={styles.input} />
+                           <TextInput
+                              onChangeText={setUsername}
+                              style={styles.input}
+                              value={username}
+                           />
                         </View>
                         <View style={[styles.lastName, styles.nameColumn]}>
                            <Text style={styles.label}>Password</Text>
-                           <TextInput style={styles.input} />
+                           <TextInput
+                              style={styles.input}
+                              value={password}
+                              onChangeText={setPassword}
+                              value={password}
+                           />
                         </View>
                      </View>
                      <View style={styles.actions}>
@@ -98,6 +95,7 @@ const UpdateProfile = () => {
                                  fontSize: 12,
                                  fontWeight: "bold",
                               }}
+                              onPress={saveChanges}
                            >
                               Save change
                            </Text>
