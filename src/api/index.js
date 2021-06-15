@@ -40,7 +40,6 @@ export const editUserProfile = async (token, username, password, firstName, last
             },
          }
       );
-      console.log(res.data.message);
    } catch (err) {
       console.log(err);
    }
@@ -108,6 +107,27 @@ export const uploadImage = async (token, taskId, data) => {
          },
       });
       return res.data;
+   } catch (err) {
+      console.log(err.message);
+   }
+};
+
+export const getMessages = async (token, taskId) => {
+   try {
+      const { data } = await API.get(`/tasks/${taskId}/messages`, {
+         headers: { Authorization: `Bearer ${token}` },
+      });
+      return data;
+   } catch (err) {
+      console.log(err, "error");
+   }
+};
+
+export const deleteMessage = async (token, taskId, messageId) => {
+   try {
+      await API.delete(`/tasks/${taskId}/messages/${messageId}`, {
+         headers: { Authorization: `Bearer ${token}` },
+      });
    } catch (err) {
       console.log(err.message);
    }

@@ -9,9 +9,12 @@ const TaskScreen = ({ route, navigation }) => {
    const toTaskList = () => {
       navigation.navigate("Task list");
    };
+   const toTaskMessages = () => {
+      navigation.navigate("Messages", { taskId: id });
+   };
    return (
       <View>
-         <Task task={task} toTheTaskList={toTaskList} />
+         <Task task={task} toTheTaskList={toTaskList} toTheTaskMessage={toTaskMessages} />
       </View>
    );
 };
