@@ -5,7 +5,7 @@ import { AuthContext } from "../../../store/authContext";
 import { UserContext } from "../../../store/userContext";
 const UploadImage = ({ taskId }) => {
    const { token } = useContext(AuthContext);
-   const { uploadImage } = useContext(UserContext);
+   const { uploadImage, user } = useContext(UserContext);
    const [image, setImage] = useState(null);
    useEffect(() => {
       ImagePicker.requestMediaLibraryPermissionsAsync().then((response) => {});
@@ -24,6 +24,7 @@ const UploadImage = ({ taskId }) => {
          uri: Platform.OS === "android" ? image.uri : image.uri.replace("file://", ""),
       });
       await uploadImage(token, taskId, formData);
+      setImage(null);
    };
    return (
       <View style={styles.container}>

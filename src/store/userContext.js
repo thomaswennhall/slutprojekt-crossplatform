@@ -31,7 +31,13 @@ const UserContextProvider = ({ children }) => {
       setUserProfile(token);
    };
    const uploadImage = async (token, taskId, data) => {
-      await API.uploadImage(token, taskId, data);
+      const res = await API.uploadImage(token, taskId, data);
+      setUser({
+         ...user,
+         tasks: user.tasks.map((task) =>
+            task._id === taskId ? { ...task, image: res.data } : task
+         ),
+      });
    };
    return (
       <UserContext.Provider

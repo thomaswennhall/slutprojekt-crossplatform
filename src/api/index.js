@@ -101,15 +101,14 @@ export const editTask = async (token, taskId, taskTitle, taskContent, taskStatus
 };
 
 export const uploadImage = async (token, taskId, data) => {
-   console.log(data);
    try {
-      await API.post(`/tasks/${taskId}/image`, data, {
+      const res = await API.post(`/tasks/${taskId}/image`, data, {
          headers: {
-            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
          },
       });
+      return res.data;
    } catch (err) {
-      console.log(err);
+      console.log(err.message);
    }
 };

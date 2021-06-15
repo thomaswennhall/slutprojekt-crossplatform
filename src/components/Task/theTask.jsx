@@ -6,6 +6,7 @@ import {
    TouchableOpacity,
    ScrollView,
    FlatList,
+   Image,
 } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome5";
 import IconIonic from "react-native-vector-icons/Ionicons";
@@ -86,6 +87,7 @@ const Task = ({ task, toTheTaskList }) => {
                   <View style={style.photoHeader}>
                      <Text style={style.contentTitle}>Photos</Text>
                   </View>
+                  {task.image && <Image source={{ uri: task.image }} style={style.img} />}
                   <UploadImage taskId={task._id} />
                </View>
             </View>
@@ -233,6 +235,19 @@ const style = StyleSheet.create({
       alignItems: "center",
       borderRadius: 6,
       marginTop: 12,
+   },
+   img: {
+      width: "100%",
+      height: 120,
+      borderRadius: 8,
+      marginBottom: 8,
+      shadowColor: "#000",
+      shadowOffset: {
+         width: 0,
+         height: 2,
+      },
+      shadowOpacity: 0.9,
+      shadowRadius: 4,
    },
 });
 export default Task;
