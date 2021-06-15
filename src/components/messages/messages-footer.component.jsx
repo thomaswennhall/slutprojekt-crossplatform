@@ -2,13 +2,16 @@ import React from "react";
 import { MessageFooterContainer, MessageDate } from "@/styles/messages";
 
 const MessageFooter = ({ date }) => {
-  return (
-    <MessageFooterContainer theme={{ padding: "10px 30px" }}>
-      <MessageDate theme={{ alignSelf: "flex-end", fontSize: "12px" }}>
-        {date.toString().split(" GMT")[0]}
-      </MessageDate>
-    </MessageFooterContainer>
-  );
+   const splitDateNTime = (dateNTime) => {
+      return dateNTime.split("T")[0];
+   };
+   return (
+      <MessageFooterContainer theme={{ padding: "10px 30px", background: "#FDF0E9" }}>
+         <MessageDate theme={{ alignSelf: "flex-end", fontSize: "12px" }}>
+            {splitDateNTime(date)}
+         </MessageDate>
+      </MessageFooterContainer>
+   );
 };
 
 export default MessageFooter;

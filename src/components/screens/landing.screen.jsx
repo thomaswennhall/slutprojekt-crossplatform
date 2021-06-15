@@ -24,26 +24,26 @@ const landingScreen = ({ navigation }) => {
       setLoginError(!loginError);
    };
 
-   return (
-      <SafeAreaView style={styles.container}>
-         <Logo />
-         <Login loginErrorHandler={toggleLoginError} />
-         {loginError && (
-            <PopUp modalVisible={loginError} toggleModalPop={toggleLoginError} />
-         )}
-      </SafeAreaView>
-   );
+  return (
+    <SafeAreaView style={styles.container}>
+      <Logo />
+      <Login loginErrorHandler={toggleLoginError} />
+      {loginError && (
+        <PopUp modalVisible={loginError} toggleModalPop={toggleLoginError} />
+      )}
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
-   container: {
-      display: "flex",
-      flexDirection: "column",
-      backgroundColor: "#fff",
-      alignItems: "center",
-      justifyContent: "space-evenly",
-      height: "100%",
-   },
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    height: "100%",
+  },
 });
 
 export default landingScreen;

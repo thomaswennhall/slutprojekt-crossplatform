@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import * as API from "../api/index";
 const UserContext = React.createContext();
 
+randomReadMessage = () => Math.floor(Math.random() * 2);
+
 const UserContextProvider = ({ children }) => {
    const [user, setUser] = useState({});
    const [clients, setClients] = useState([]);
+   const [messages, setMessages] = useState([]);
    const setUserProfile = async (token) => {
       const res = await API.getUserProfile(token);
       setUser(res);
@@ -39,6 +42,29 @@ const UserContextProvider = ({ children }) => {
          ),
       });
    };
+
+   const populateTaskMessages = (taskId, messages) =>
+      user.tasks.map((task) => (task._id === taskId ? { ...task, messages } : task));
+
+   const populateMessages = async (token, taskId) => {
+      try {
+         let messages = await API.getMessages(token, taskId);
+         setUser({ ...user, tasks: populateTaskMessages(taskId, messages) });
+         return user.tasks.find((task) => task._id === taskId).messages;
+      } catch (err) {
+         throw new Error.message(err);
+      }
+   };
+   const deleteMessage = async (token, taskId, messageId) => {
+      try {
+         await API.deleteMessage(token, taskId, messageId);
+         setUserProfile(token);
+      } catch (err) {
+         // throw new Error.message(err);
+         console.log(err.message);
+      }
+   };
+
    return (
       <UserContext.Provider
          value={{
@@ -52,6 +78,8 @@ const UserContextProvider = ({ children }) => {
             editTask,
             uploadImage,
             updateUserProfile,
+            populateMessages,
+            deleteMessage,
          }}
       >
          {children}

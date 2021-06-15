@@ -11,7 +11,7 @@ import Input from "../input/input.component";
 import Button from "../button/button.component";
 import Modal from "../modal/statusMessage/errorModalComponent";
 
-import * as SecureStore from 'expo-secure-store'
+
 
 const Login = ({ loginErrorHandler }) => {
    const [username, setUsername] = useState("worker");
