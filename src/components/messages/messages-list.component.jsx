@@ -3,7 +3,7 @@ import { SafeAreaView } from "@/styles";
 import { FlatList } from "react-native";
 import MessagesListItem from "./messages-list-item";
 
-const MessagesList = ({ data }) => {
+const MessagesList = ({ data, taskId }) => {
    return (
       <SafeAreaView
          theme={{
@@ -13,7 +13,7 @@ const MessagesList = ({ data }) => {
          <FlatList
             data={data}
             style={{ flex: 1 }}
-            renderItem={({ item }) => <MessagesListItem {...item} />}
+            renderItem={({ item }) => <MessagesListItem {...item} taskId={taskId} />}
             keyExtractor={(item, index) => item._id.toString()}
          />
       </SafeAreaView>

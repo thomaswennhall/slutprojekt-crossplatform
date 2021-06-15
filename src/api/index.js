@@ -122,3 +122,13 @@ export const getMessages = async (token, taskId) => {
       console.log(err, "error");
    }
 };
+
+export const deleteMessage = async (token, taskId, messageId) => {
+   try {
+      await API.delete(`/tasks/${taskId}/messages/${messageId}`, {
+         headers: { Authorization: `Bearer ${token}` },
+      });
+   } catch (err) {
+      console.log(err.message);
+   }
+};

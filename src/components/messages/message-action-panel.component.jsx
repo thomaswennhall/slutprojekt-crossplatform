@@ -4,7 +4,11 @@ import { ActionPanelWrapper } from "@/styles/action-panel";
 import { ThemeContext } from "styled-components";
 import { Dimensions, TouchableOpacity, Text } from "react-native";
 import IconFontAwesome from "react-native-vector-icons/FontAwesome5";
-const MessageActionPanel = () => {
+import { UserContext } from "../../store/userContext";
+import { AuthContext } from "../../store/authContext";
+const MessageActionPanel = ({ taskId, messageId }) => {
+   const { deleteMessage } = useContext(UserContext);
+   const { token } = useContext(AuthContext);
    const themeContext = useContext(ThemeContext);
    return (
       <ActionPanelWrapper
@@ -30,6 +34,7 @@ const MessageActionPanel = () => {
                paddingHorizontal: 32,
                paddingVertical: 16,
             }}
+            onPress={() => deleteMessage(token, taskId, messageId)}
          >
             <IconFontAwesome name="trash" size={24} style={{ color: "#fff" }} />
          </TouchableOpacity>

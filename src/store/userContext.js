@@ -7,6 +7,7 @@ randomReadMessage = () => Math.floor(Math.random() * 2);
 const UserContextProvider = ({ children }) => {
    const [user, setUser] = useState({});
    const [clients, setClients] = useState([]);
+   const [messages, setMessages] = useState([]);
    const setUserProfile = async (token) => {
       const res = await API.getUserProfile(token);
       setUser(res);
@@ -43,14 +44,21 @@ const UserContextProvider = ({ children }) => {
       try {
          let messages = await API.getMessages(token, taskId);
          setUser({ ...user, tasks: populateTaskMessages(taskId, messages) });
-         return messages;
+         return user.tasks.find((task) => task._id === taskId).messages;
       } catch (err) {
          throw new Error.message(err);
       }
    };
+   const deleteMessage = async (token, taskId, messageId) => {
+      try {
+         await API.deleteMessage(token, taskId, messageId);
+         setUserProfile(token);
+      } catch (err) {
+         // throw new Error.message(err);
+         console.log(err.message);
+      }
+   };
 
-   const getSortedMessages = (taskId) =>
-      user.messages.sort((a, b) => !a.read || a.updatedAt > b.updatedAt);
    return (
       <UserContext.Provider
          value={{
@@ -65,7 +73,7 @@ const UserContextProvider = ({ children }) => {
             uploadImage,
             updateUserProfile,
             populateMessages,
-            getSortedMessages,
+            deleteMessage,
          }}
       >
          {children}

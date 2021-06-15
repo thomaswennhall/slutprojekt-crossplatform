@@ -3,8 +3,6 @@ import React, { useContext, useState } from "react";
 import { MessageHeaderContainer, MessageTitle, MessageAuthor } from "@/styles/messages";
 import { Portrait } from "@/styles";
 import { ThemeContext } from "styled-components";
-import { Dimensions } from "react-native";
-// import MessageCheckbox from "./message-checkbox.component";
 import { UserContext } from "../../store/userContext";
 const MessageHeader = ({ author, title }) => {
    const themeContext = useContext(ThemeContext);
@@ -23,11 +21,9 @@ const MessageHeader = ({ author, title }) => {
             flexDirection: "row",
             justifyContent: "center",
             padding: `0 ${themeContext.spacing.la}`,
-            // width: Dimensions.get("window").width + "px",
             background: "#FDF0E9",
          }}
       >
-         {/* <MessageCheckbox read={true} /> */}
          <MessageTitle theme={{ fontSize: themeContext.fontSizes.me }}>
             {title}
          </MessageTitle>

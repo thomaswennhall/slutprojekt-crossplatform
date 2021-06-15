@@ -7,14 +7,16 @@ import MessageHeader from "./message-header.component";
 import MessageActionPanel from "./message-action-panel.component";
 import MessageContent from "./message-content.component";
 import MessageFooter from "./messages-footer.component";
-const MessagesListItem = ({ author, title, content, updatedAt }) => {
+const MessagesListItem = ({ author, title, content, updatedAt, _id, taskId }) => {
    const [toggleContent, setToggleContent] = useState(false);
    const showHideContent = () => {
       setToggleContent(!toggleContent);
    };
 
    return (
-      <SwipeableGesture rightActionHandler={() => <MessageActionPanel />}>
+      <SwipeableGesture
+         rightActionHandler={() => <MessageActionPanel messageId={_id} taskId={taskId} />}
+      >
          <MessageWrapper
             theme={{
                width: "90%",

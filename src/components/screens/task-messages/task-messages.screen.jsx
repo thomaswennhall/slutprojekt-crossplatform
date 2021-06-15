@@ -5,13 +5,12 @@ import { AuthContext } from "@/store/authContext";
 const TaskMessages = ({ route }) => {
    const { taskId } = route.params;
    const [messages, setMessages] = useState([]);
-   const { getSortedMessages, populateMessages, user } = useContext(UserContext);
+   const { populateMessages, user } = useContext(UserContext);
    const { token } = useContext(AuthContext);
    useEffect(() => {
       const initMessages = async () => {
          try {
-            const res = await populateMessages(token, taskId);
-            setMessages([...res]);
+            await populateMessages(token, taskId);
          } catch (err) {
             throw new Error.message(err);
          }
@@ -19,7 +18,12 @@ const TaskMessages = ({ route }) => {
       initMessages();
    }, []);
 
-   return <MessagesList data={messages} />;
+   return (
+      <MessagesList
+         data={user.tasks.find((task) => task._id === taskId).messages}
+         taskId={taskId}
+      />
+   );
 };
 
 export default TaskMessages;
