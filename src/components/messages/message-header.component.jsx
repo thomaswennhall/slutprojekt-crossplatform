@@ -4,13 +4,11 @@ import { MessageHeaderContainer, MessageTitle, MessageAuthor } from "@/styles/me
 import { Portrait } from "@/styles";
 import { ThemeContext } from "styled-components";
 import { Dimensions } from "react-native";
-import MessageCheckbox from "./message-checkbox.component";
-
+// import MessageCheckbox from "./message-checkbox.component";
+import { UserContext } from "../../store/userContext";
 const MessageHeader = ({ author, title }) => {
    const themeContext = useContext(ThemeContext);
-   const [user, setUser] = useState({
-      username: "test-user",
-   });
+   const { user } = useContext(UserContext);
    const portraitColor = (author) =>
       author === user.username && author
          ? themeContext.colors.accentBlue
@@ -25,10 +23,11 @@ const MessageHeader = ({ author, title }) => {
             flexDirection: "row",
             justifyContent: "center",
             padding: `0 ${themeContext.spacing.la}`,
-            width: Dimensions.get("window").width + "px",
+            // width: Dimensions.get("window").width + "px",
+            background: "#FDF0E9",
          }}
       >
-         <MessageCheckbox read={true} />
+         {/* <MessageCheckbox read={true} /> */}
          <MessageTitle theme={{ fontSize: themeContext.fontSizes.me }}>
             {title}
          </MessageTitle>
@@ -39,7 +38,9 @@ const MessageHeader = ({ author, title }) => {
                width: "50px",
             }}
          >
-            <MessageAuthor>{authorFirstChar(author)}</MessageAuthor>
+            <MessageAuthor theme={{ color: "#fff" }}>
+               {authorFirstChar(author)}
+            </MessageAuthor>
          </Portrait>
       </MessageHeaderContainer>
    );

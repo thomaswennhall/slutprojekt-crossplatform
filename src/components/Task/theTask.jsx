@@ -21,7 +21,7 @@ const Messages = ({ title, content, date }) => (
       <Text style={style.messageFooter}>{date}</Text>
    </View>
 );
-const Task = ({ task, toTheTaskList }) => {
+const Task = ({ task, toTheTaskList, toTheTaskMessage }) => {
    const [editModal, setEditModal] = useState(false);
    const [taskTitle, setTaskTitle] = useState("");
    const [taskContent, setTaskContent] = useState("");
@@ -102,7 +102,7 @@ const Task = ({ task, toTheTaskList }) => {
                      />
                   </View>
                </View>
-               <TouchableOpacity style={style.messageButton}>
+               <TouchableOpacity style={style.messageButton} onPress={toTheTaskMessage}>
                   <Text style={{ color: "#fff", fontWeight: "bold" }}>View all</Text>
                </TouchableOpacity>
             </View>

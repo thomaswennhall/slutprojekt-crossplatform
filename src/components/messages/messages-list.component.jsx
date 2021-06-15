@@ -5,7 +5,11 @@ import MessagesListItem from "./messages-list-item";
 
 const MessagesList = ({ data }) => {
    return (
-      <SafeAreaView theme={{ backgroundColor: "#fff" }}>
+      <SafeAreaView
+         theme={{
+            background: "#F8F8F8",
+         }}
+      >
          <FlatList
             data={data}
             style={{ flex: 1 }}
