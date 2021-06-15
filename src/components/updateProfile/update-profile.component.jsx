@@ -15,7 +15,6 @@ import Button from "@/components/button/button.component";
 import { AuthContext } from "../../store/authContext";
 import { UserContext } from "../../store/userContext";
 const UpdateProfile = ({ userInfo, backToProfile }) => {
-   // console.log(userInfo);
    const { updateUserProfile } = useContext(UserContext);
    const { token } = useContext(AuthContext);
    const [username, setUsername] = useState(userInfo.username);
