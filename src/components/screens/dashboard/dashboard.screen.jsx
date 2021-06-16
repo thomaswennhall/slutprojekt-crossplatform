@@ -8,16 +8,16 @@ import { AuthContext } from "@/store/authContext";
 import { UserContext } from "@/store/userContext";
 
 const DashboardScreen = ({ navigation }) => {
-  const { token, clearToken } = useContext(AuthContext);
+   const { token, clearToken } = useContext(AuthContext);
 
-  const { user, setUserProfile, clearUser } = useContext(UserContext);
+   const { user, setUserProfile, clearUser } = useContext(UserContext);
 
-  useEffect(() => {
-    const setProfile = async () => {
-      await setUserProfile(token);
-    };
+   useEffect(() => {
+      const setProfile = async () => {
+         await setUserProfile(token);
+      };
 
-    setProfile();
+      setProfile();
 
       return async () => {
          clearUser();
@@ -25,64 +25,68 @@ const DashboardScreen = ({ navigation }) => {
       };
    }, []);
 
-  const navigateToCategory = () => {
-    navigation.navigate("Category");
-  };
-  const navigateToProfile = () => {
-    navigation.navigate("Profile");
-  };
-  const logoutHandler = () => {
-    navigation.goBack();
-  };
+   const navigateToCategory = () => {
+      navigation.navigate("Category");
+   };
+   const navigateToProfile = () => {
+      navigation.navigate("Profile");
+   };
+   const logoutHandler = () => {
+      navigation.goBack();
+   };
 
-  const navigateToMessages = () => {
-    navigation.navigate("Messages");
-  };
+   const navigateToMessages = () => {
+      navigation.navigate("Messages");
+   };
+   const navigateToMTaskList4Message = () => {
+      navigation.navigate("Task List");
+   };
 
-  return (
-    <View style={styles.container}>
-      <DashboardProfile username={user.username} role={user.role} />
-      <DashboardGrid
-        user={user}
-        toCategory={navigateToCategory}
-        toProfile={navigateToProfile}
-        toMessages={navigateToMessages}
-      />
-      <Action
-        text={"SIGN OUT"}
-        color={"lightRed"}
-        logoutButton={true}
-        pressHandler={logoutHandler}
-      />
-    </View>
-  );
+   return (
+      <View style={styles.container}>
+         <DashboardProfile username={user.username} role={user.role} />
+         <DashboardGrid
+            user={user}
+            toCategory={navigateToCategory}
+            toProfile={navigateToProfile}
+            toMessages={navigateToMessages}
+            toTasks4Message={navigateToMTaskList4Message}
+         />
+         <Action
+            text={"SIGN OUT"}
+            color={"lightRed"}
+            logoutButton={true}
+            pressHandler={logoutHandler}
+         />
+      </View>
+   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "space-between",
-    paddingVertical: 20,
-  },
-  overViewHeader: {
-    display: "flex",
-    flexDirection: "row",
-  },
+   container: {
+      flex: 1,
+      backgroundColor: "#fff",
+      justifyContent: "space-between",
+      paddingVertical: 20,
+   },
+   overViewHeader: {
+      display: "flex",
+      flexDirection: "row",
+   },
 
-  overViewGrid: {
-    flexGrow: 0,
-  },
-  overViewText: {
-    fontWeight: "bold",
-    fontSize: 30,
-    color: "#2B2B2B",
-    marginBottom: 15,
-    marginLeft: 25,
-  },
-  icon: {
-    fontSize: 24,
-  },
+   overViewGrid: {
+      flexGrow: 0,
+   },
+   overViewText: {
+      fontWeight: "bold",
+      fontSize: 30,
+      color: "#2B2B2B",
+      marginBottom: 15,
+      marginLeft: 25,
+   },
+   icon: {
+      fontSize: 24,
+   },
 });
 
 export default DashboardScreen;
