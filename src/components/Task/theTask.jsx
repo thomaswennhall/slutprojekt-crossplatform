@@ -30,6 +30,8 @@ const Task = ({ task, toTheTaskList, toTheTaskMessage }) => {
    const [taskContent, setTaskContent] = useState("");
    const [taskId, setTaskId] = useState("");
    const toggleEditModal = () => {
+      setTaskTitle(task.title);
+      setTaskContent(task.info);
       setTaskId(task._id);
       setEditModal(!editModal);
    };
