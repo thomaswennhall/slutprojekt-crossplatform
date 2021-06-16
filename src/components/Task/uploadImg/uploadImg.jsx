@@ -37,20 +37,22 @@ const UploadImage = ({ taskId }) => {
       <View style={styles.container}>
          <View style={styles.gallery}>
             {image && <Image source={{ uri: image.uri }} style={styles.img} />}
-            <View style={styles.buttonContainer}>
-               <TouchableOpacity
-                  style={[styles.uploadButt, styles.openLibrary]}
-                  onPress={pickImage}
-               >
-                  <Text style={styles.uploadText}>Open Library</Text>
-               </TouchableOpacity>
-               <TouchableOpacity
-                  style={[styles.uploadButt, styles.openLibrary]}
-                  onPress={openCamera}
-               >
-                  <Text style={styles.uploadText}>Open Camera</Text>
-               </TouchableOpacity>
-            </View>
+            {user.role === "worker" && (
+               <View style={styles.buttonContainer}>
+                  <TouchableOpacity
+                     style={[styles.uploadButt, styles.openLibrary]}
+                     onPress={pickImage}
+                  >
+                     <Text style={styles.uploadText}>Open Library</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                     style={[styles.uploadButt, styles.openLibrary]}
+                     onPress={openCamera}
+                  >
+                     <Text style={styles.uploadText}>Open Camera</Text>
+                  </TouchableOpacity>
+               </View>
+            )}
          </View>
          {image && (
             <TouchableOpacity style={styles.uploadButt} onPress={uploadTheImage}>

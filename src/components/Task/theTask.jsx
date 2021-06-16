@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
    StyleSheet,
    View,
@@ -14,6 +14,7 @@ import EditTask from "../modal/editTask/editTask";
 import NewMessages from "../modal/messages/newMessages";
 import UploadImage from "./uploadImg/uploadImg";
 import UploadImageComp from "./uploadImg/uploadImg";
+import { UserContext } from "../../store/userContext";
 const Messages = ({ title, content, date }) => (
    <View style={style.taskMessage}>
       <Text style={style.messageTtile}>{title}</Text>
@@ -29,6 +30,7 @@ const Task = ({ task, toTheTaskList, toTheTaskMessage }) => {
    const [taskTitle, setTaskTitle] = useState("");
    const [taskContent, setTaskContent] = useState("");
    const [taskId, setTaskId] = useState("");
+   const { user } = useContext(UserContext);
    const toggleEditModal = () => {
       setTaskTitle(task.title);
       setTaskContent(task.info);
@@ -58,15 +60,17 @@ const Task = ({ task, toTheTaskList, toTheTaskMessage }) => {
                <View style={style.taskTitle}>
                   <Text style={style.title}>{task.title}</Text>
                </View>
-               <View style={style.bages}>
-                  <TouchableOpacity
-                     style={style.shortcut}
-                     onPress={() => toggleEditModal(!editModal)}
-                  >
-                     <View style={style.shortcutFrame}>
-                        <IconFontAwesome name="pen" style={style.shortcutIcon} />
-                     </View>
-                  </TouchableOpacity>
+               <View style={user.role === "worker" ? style.bages : style.bages2}>
+                  {user.role === "worker" && (
+                     <TouchableOpacity
+                        style={style.shortcut}
+                        onPress={() => toggleEditModal(!editModal)}
+                     >
+                        <View style={style.shortcutFrame}>
+                           <IconFontAwesome name="pen" style={style.shortcutIcon} />
+                        </View>
+                     </TouchableOpacity>
+                  )}
                   <TouchableOpacity
                      style={style.shortcut}
                      onPress={() => toggleNewMessagesModal(!newMessagesModal)}
@@ -172,6 +176,12 @@ const style = StyleSheet.create({
       width: "30%",
       display: "flex",
       justifyContent: "space-between",
+      flexDirection: "row",
+   },
+   bages2: {
+      width: "30%",
+      display: "flex",
+      justifyContent: "flex-end",
       flexDirection: "row",
    },
    shortcutFrame: {
