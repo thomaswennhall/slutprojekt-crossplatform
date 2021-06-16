@@ -51,7 +51,7 @@ const Task = ({ task, toTheTaskList, toTheTaskMessage }) => {
    );
    return (
       <View>
-         <ScrollView style={style.container}>
+         <View style={style.container}>
             <View style={style.taskHeader}>
                <View style={style.taskTitle}>
                   <Text style={style.title}>{task.title}</Text>
@@ -98,11 +98,16 @@ const Task = ({ task, toTheTaskList, toTheTaskMessage }) => {
                   <UploadImage taskId={task._id} />
                </View>
             </View>
-         </ScrollView>
+         </View>
          <View style={style.messagesBody}>
             <View style={style.taskBody}>
-               <View style={style.photoHeader}>
-                  <Text style={style.contentTitle}>Messages</Text>
+               <View style={style.messagesContainer}>
+                  <View style={style.messagesHeader}>
+                     <Text style={style.contentTitle}>Messages</Text>
+                     <View style={style.contentTitleLength}>
+                        <Text style={style.lengthText}>{task.messages.length}</Text>
+                     </View>
+                  </View>
                   <View style={style.messageContentWrapper}>
                      <FlatList
                         data={task.messages}
@@ -182,7 +187,6 @@ const style = StyleSheet.create({
       marginRight: -0.5,
       color: "#091832",
    },
-   // taskContents: { marginBottom: 50 },
    taskBody: {
       marginTop: 15,
       borderRadius: 8,
@@ -222,7 +226,15 @@ const style = StyleSheet.create({
       borderRadius: 8,
    },
    messageContentWrapper: {
-      marginTop: 16,
+      marginTop: 8,
+   },
+   messagesContainer: {
+      maxHeight: 130,
+      overflow: "scroll",
+   },
+   messagesHeader: {
+      display: "flex",
+      flexDirection: "row",
    },
    messageTtile: {
       fontSize: 16,
@@ -235,6 +247,18 @@ const style = StyleSheet.create({
    messageContent: {
       color: "#404040",
       fontSize: 10,
+   },
+   lengthText: {
+      fontSize: 10,
+      fontWeight: "bold",
+   },
+   contentTitleLength: {
+      marginLeft: 8,
+      alignSelf: "center",
+      paddingVertical: 8,
+      paddingHorizontal: 12,
+      backgroundColor: "#F3F3F3",
+      borderRadius: 200,
    },
    messageFooter: {
       fontSize: 12,
@@ -261,6 +285,7 @@ const style = StyleSheet.create({
       },
       shadowOpacity: 0.9,
       shadowRadius: 4,
+      marginTop: 16,
    },
 });
 export default Task;

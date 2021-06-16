@@ -7,7 +7,6 @@ const popUp = ({ newMessagesModal, toggleNewMessagesModal, taskId, backToTheTask
    const { token } = useContext(AuthContext);
    const [messageTitle, setMessageTitle] = useState("");
    const [messageContent, setMessageContent] = useState("");
-   // useEffect(() => {}, []);
    const addNewMessage = async () => {
       await newMessages(token, taskId, messageTitle, messageContent);
       backToTheTask();
