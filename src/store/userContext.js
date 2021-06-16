@@ -60,11 +60,17 @@ const UserContextProvider = ({ children }) => {
          await API.deleteMessage(token, taskId, messageId);
          setUserProfile(token);
       } catch (err) {
-         // throw new Error.message(err);
-         console.log(err.message);
+         throw new Error.message(err);
       }
    };
-
+   const newMessages = async (token, taskId, title, content) => {
+      try {
+         await API.newMessage(token, taskId, title, content);
+         setUserProfile(token);
+      } catch (err) {
+         throw new Error.message(err);
+      }
+   };
    return (
       <UserContext.Provider
          value={{
@@ -80,6 +86,7 @@ const UserContextProvider = ({ children }) => {
             updateUserProfile,
             populateMessages,
             deleteMessage,
+            newMessages,
          }}
       >
          {children}

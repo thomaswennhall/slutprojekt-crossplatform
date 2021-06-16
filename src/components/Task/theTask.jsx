@@ -11,6 +11,7 @@ import {
 import IconFontAwesome from "react-native-vector-icons/FontAwesome5";
 import IconIonic from "react-native-vector-icons/Ionicons";
 import EditTask from "../modal/editTask/editTask";
+import NewMessages from "../modal/messages/newMessages";
 import UploadImage from "./uploadImg/uploadImg";
 import UploadImageComp from "./uploadImg/uploadImg";
 const Messages = ({ title, content, date }) => (
@@ -24,14 +25,17 @@ const Messages = ({ title, content, date }) => (
 );
 const Task = ({ task, toTheTaskList, toTheTaskMessage }) => {
    const [editModal, setEditModal] = useState(false);
+   const [newMessagesModal, setNewMessagesModal] = useState(false);
    const [taskTitle, setTaskTitle] = useState("");
    const [taskContent, setTaskContent] = useState("");
    const [taskId, setTaskId] = useState("");
    const toggleEditModal = () => {
-      setTaskTitle(task.title);
-      setTaskContent(task.info);
       setTaskId(task._id);
       setEditModal(!editModal);
+   };
+   const toggleNewMessagesModal = () => {
+      setTaskId(task._id);
+      setNewMessagesModal(!newMessagesModal);
    };
    const splitDateNTime = (dateNTime) => {
       return dateNTime.split("T")[0];
@@ -61,7 +65,10 @@ const Task = ({ task, toTheTaskList, toTheTaskMessage }) => {
                         <IconFontAwesome name="pen" style={style.shortcutIcon} />
                      </View>
                   </TouchableOpacity>
-                  <TouchableOpacity style={style.shortcut}>
+                  <TouchableOpacity
+                     style={style.shortcut}
+                     onPress={() => toggleNewMessagesModal(!newMessagesModal)}
+                  >
                      <View style={style.shortcutFrame}>
                         <IconIonic name="md-mail" style={style.shortcutIcon} />
                      </View>
@@ -115,6 +122,12 @@ const Task = ({ task, toTheTaskList, toTheTaskMessage }) => {
             taskId={taskId}
             theTaskTitle={taskTitle}
             theTaskContent={taskContent}
+            backToTheTask={toTheTaskList}
+         />
+         <NewMessages
+            newMessagesModal={newMessagesModal}
+            toggleNewMessagesModal={toggleNewMessagesModal}
+            taskId={taskId}
             backToTheTask={toTheTaskList}
          />
       </View>
