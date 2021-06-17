@@ -30,7 +30,7 @@ export const getUserProfile = async (token) => {
 
 export const editUserProfile = async (token, username, password, firstName, lastName) => {
    try {
-      const res = await API.patch(
+      await API.patch(
          "/me",
          {
             username: username,

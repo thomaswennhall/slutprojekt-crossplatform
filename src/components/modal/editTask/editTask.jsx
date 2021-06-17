@@ -7,6 +7,9 @@ import {
    View,
    Image,
    TouchableOpacity,
+   KeyboardAvoidingView,
+   TouchableWithoutFeedback,
+   Keyboard,
 } from "react-native";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import RNPickerSelect from "react-native-picker-select";
@@ -38,65 +41,72 @@ const popUp = ({
    return (
       <TouchableOpacity onPress={() => toggleEditModal(!editModal)}>
          <Modal animationType="slide" transparent={true} visible={editModal}>
-            <View style={styles.centeredView}>
-               <View style={styles.modalView}>
-                  <View style={styles.editHeader}>
-                     <Text style={styles.editTitle}>Edit</Text>
-                  </View>
-                  <View style={styles.editInputs}>
-                     <Text style={styles.label}>Title</Text>
-                     <TextInput
-                        onChangeText={editTaskTitle}
-                        value={taskTitle}
-                        defaultValue={theTaskTitle}
-                        style={styles.taskInput}
-                     />
-                  </View>
-                  <View style={styles.editInputs}>
-                     <Text style={styles.label}>Content</Text>
-                     <TextInput
-                        multiline={true}
-                        numberOfLines={5}
-                        onChangeText={editTaskContent}
-                        value={taskContent}
-                        defaultValue={theTaskContent}
-                        style={styles.taskTextArea}
-                     />
-                  </View>
-                  <View style={styles.editInputs}>
-                     <Text style={styles.label}>Status</Text>
-                     <View style={[styles.taskInput, styles.dropdown]}>
-                        <RNPickerSelect
-                           placeholder={{ label: "--- Option ---" }}
-                           onValueChange={(value) => {
-                              setSelectedStatus(value);
-                           }}
-                           items={[
-                              { label: "Completed", value: true },
-                              { label: "Not completed", value: false },
-                           ]}
-                           style={{ ...styles.taskInput }}
-                        />
+            <KeyboardAvoidingView
+               behavior={Platform.OS === "ios" ? "padding" : "height"}
+               style={styles.centeredView}
+            >
+               <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                  <View>
+                     <View style={styles.modalView}>
+                        <View style={styles.editHeader}>
+                           <Text style={styles.editTitle}>Edit</Text>
+                        </View>
+                        <View style={styles.editInputs}>
+                           <Text style={styles.label}>Title</Text>
+                           <TextInput
+                              onChangeText={editTaskTitle}
+                              value={taskTitle}
+                              defaultValue={theTaskTitle}
+                              style={styles.taskInput}
+                           />
+                        </View>
+                        <View style={styles.editInputs}>
+                           <Text style={styles.label}>Content</Text>
+                           <TextInput
+                              multiline={true}
+                              numberOfLines={5}
+                              onChangeText={editTaskContent}
+                              value={taskContent}
+                              defaultValue={theTaskContent}
+                              style={styles.taskTextArea}
+                           />
+                        </View>
+                        <View style={styles.editInputs}>
+                           <Text style={styles.label}>Status</Text>
+                           <View style={[styles.taskInput, styles.dropdown]}>
+                              <RNPickerSelect
+                                 placeholder={{ label: "--- Option ---" }}
+                                 onValueChange={(value) => {
+                                    setSelectedStatus(value);
+                                 }}
+                                 items={[
+                                    { label: "Completed", value: true },
+                                    { label: "Not completed", value: false },
+                                 ]}
+                                 style={{ ...styles.taskInput }}
+                              />
+                           </View>
+                        </View>
+                        <View style={styles.events}>
+                           <TouchableOpacity
+                              style={[styles.button, styles.apply]}
+                              onPress={() => editTheTask()}
+                           >
+                              <Text style={styles.textStyle}>Apply change</Text>
+                           </TouchableOpacity>
+                           <TouchableOpacity
+                              style={[styles.button, styles.discard]}
+                              onPress={() => toggleEditModal(!editModal)}
+                           >
+                              <Text style={[styles.textStyle, styles.textDiscard]}>
+                                 Discard change
+                              </Text>
+                           </TouchableOpacity>
+                        </View>
                      </View>
                   </View>
-                  <View style={styles.events}>
-                     <TouchableOpacity
-                        style={[styles.button, styles.apply]}
-                        onPress={() => editTheTask()}
-                     >
-                        <Text style={styles.textStyle}>Apply change</Text>
-                     </TouchableOpacity>
-                     <TouchableOpacity
-                        style={[styles.button, styles.discard]}
-                        onPress={() => toggleEditModal(!editModal)}
-                     >
-                        <Text style={[styles.textStyle, styles.textDiscard]}>
-                           Discard change
-                        </Text>
-                     </TouchableOpacity>
-                  </View>
-               </View>
-            </View>
+               </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
          </Modal>
       </TouchableOpacity>
    );

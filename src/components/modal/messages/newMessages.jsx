@@ -1,5 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Modal, StyleSheet, Text, TextInput, View, TouchableOpacity } from "react-native";
+import {
+   Modal,
+   StyleSheet,
+   Text,
+   TextInput,
+   View,
+   TouchableOpacity,
+   KeyboardAvoidingView,
+   TouchableWithoutFeedback,
+   Keyboard,
+} from "react-native";
 import { UserContext } from "../../../store/userContext";
 import { AuthContext } from "../../../store/authContext";
 const popUp = ({ newMessagesModal, toggleNewMessagesModal, taskId, backToTheTask }) => {
@@ -14,48 +24,55 @@ const popUp = ({ newMessagesModal, toggleNewMessagesModal, taskId, backToTheTask
    return (
       <TouchableOpacity onPress={() => toggleNewMessagesModal(!newMessagesModal)}>
          <Modal animationType="slide" transparent={true} visible={newMessagesModal}>
-            <View style={styles.centeredView}>
-               <View style={styles.modalView}>
-                  <View style={styles.editHeader}>
-                     <Text style={styles.editTitle}>New message</Text>
-                  </View>
-                  <View style={styles.editInputs}>
-                     <Text style={styles.label}>Title</Text>
-                     <TextInput
-                        onChangeText={setMessageTitle}
-                        value={messageTitle}
-                        style={styles.taskInput}
-                     />
-                  </View>
-                  <View style={styles.editInputs}>
-                     <Text style={styles.label}>Content</Text>
-                     <TextInput
-                        multiline={true}
-                        numberOfLines={5}
-                        onChangeText={setMessageContent}
-                        value={messageContent}
-                        style={styles.taskTextArea}
-                     />
-                  </View>
+            <KeyboardAvoidingView
+               behavior={Platform.OS === "ios" ? "padding" : "height"}
+               style={styles.centeredView}
+            >
+               <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                  <View>
+                     <View style={styles.modalView}>
+                        <View style={styles.editHeader}>
+                           <Text style={styles.editTitle}>New message</Text>
+                        </View>
+                        <View style={styles.editInputs}>
+                           <Text style={styles.label}>Title</Text>
+                           <TextInput
+                              onChangeText={setMessageTitle}
+                              value={messageTitle}
+                              style={styles.taskInput}
+                           />
+                        </View>
+                        <View style={styles.editInputs}>
+                           <Text style={styles.label}>Content</Text>
+                           <TextInput
+                              multiline={true}
+                              numberOfLines={5}
+                              onChangeText={setMessageContent}
+                              value={messageContent}
+                              style={styles.taskTextArea}
+                           />
+                        </View>
 
-                  <View style={styles.events}>
-                     <TouchableOpacity
-                        style={[styles.button, styles.apply]}
-                        onPress={() => addNewMessage()}
-                     >
-                        <Text style={styles.textStyle}>Apply change</Text>
-                     </TouchableOpacity>
-                     <TouchableOpacity
-                        style={[styles.button, styles.discard]}
-                        onPress={() => toggleNewMessagesModal(!newMessagesModal)}
-                     >
-                        <Text style={[styles.textStyle, styles.textDiscard]}>
-                           Discard change
-                        </Text>
-                     </TouchableOpacity>
+                        <View style={styles.events}>
+                           <TouchableOpacity
+                              style={[styles.button, styles.apply]}
+                              onPress={() => addNewMessage()}
+                           >
+                              <Text style={styles.textStyle}>Apply change</Text>
+                           </TouchableOpacity>
+                           <TouchableOpacity
+                              style={[styles.button, styles.discard]}
+                              onPress={() => toggleNewMessagesModal(!newMessagesModal)}
+                           >
+                              <Text style={[styles.textStyle, styles.textDiscard]}>
+                                 Discard change
+                              </Text>
+                           </TouchableOpacity>
+                        </View>
+                     </View>
                   </View>
-               </View>
-            </View>
+               </TouchableWithoutFeedback>
+            </KeyboardAvoidingView>
          </Modal>
       </TouchableOpacity>
    );
