@@ -30,7 +30,6 @@ const UserContextProvider = ({ children }) => {
    };
    const editTask = async (token, taskId, taskTitle, taskContent, taskStatus) => {
       await API.editTask(token, taskId, taskTitle, taskContent, taskStatus);
-      // const findTask = user.tasks.find((task) => task._id === editTheTask);
       setUserProfile(token);
    };
    const uploadImage = async (token, taskId, data) => {
